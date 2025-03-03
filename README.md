@@ -1,59 +1,44 @@
-# MainVacaData
+# 🐄 VacaData  
+***  
+VacaData es un proyecto diseñado para gestionar el estado del ganado bovino, permitiendo registrar, actualizar y visualizar información clave sobre cada animal.  
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.0.
+## 🚀 Tecnologías Utilizadas  
+Este proyecto usa las siguientes tecnologías:  
 
-## Development server
+![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 
-To start a local development server, run:
 
-```bash
-ng serve
-```
+## 📌 Funcionalidades CRUD  
+VacaData sigue el modelo **CRUD** (*Create, Read, Update, Delete*) para la gestión del ganado:  
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+| Operación  | Descripción |
+|------------|-------------|
+| **Create (Crear)**  | Permite registrar nuevos animales en el sistema. |
+| **Read (Leer)**     | Consulta el estado y la información de cada animal. |
+| **Update (Actualizar)** | Modifica datos como raza, peso, altura, color y vacunas. |
+| **Delete (Eliminar)** | Borra registros de animales cuando sea necesario. |
 
-## Code scaffolding
+## 🏗️ Características del Proyecto  
+- 📋 **Gestión de Animales**: Cada animal registrado tendrá atributos como:  
+  - **Nombre**  
+  - **Raza**  
+  - **Peso**  
+  - **Altura**  
+  - **Color**  
+  - **Vacunas aplicadas**  
+  - **Fotografía**  
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- 📅 **Historial de Crecimiento**: Posibilidad de registrar y visualizar el progreso de cada animal con reportes gráficos.  
 
-```bash
-ng generate component component-name
-```
+- 🔐 **Autenticación de Usuarios**:  
+  - Registro con **correo y contraseña**.  
+  - Opción de iniciar sesión con **Google** (si se implementa más adelante).  
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 📊 Futuras Mejoras  
+- 📈 **Gráficos y Reportes** sobre el estado del ganado.  
+- 📅 **Seguimiento de vacunas** con notificaciones.  
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
