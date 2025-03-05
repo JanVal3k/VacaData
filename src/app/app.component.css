@@ -11,17 +11,22 @@ body, html {
 
 .container {
     display: flex;
-    min-height: 100vh;
+    min-height: 98vh;
 }
 
 .menu {
-    width: 20%;
-    background-color: #b81818;
+    width: 10%;
+
     padding: 20px;
+    margin-right: 2.5px;
+    border-radius: 16px;
+    border: solid 2px black;
 }
 
 .content {
     flex-grow: 1;
     padding: 20px;
-    background-color: #5764c8;
+    margin-left: 2.5px;
+    border-radius: 16px;
+    border: solid 2px black;
 }
