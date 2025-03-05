@@ -1,16 +1,22 @@
 <div class="container">
   <nav class="menu">
-    <h2>Menú</h2>
-    <ul>
-      <li class="fas fa-house"><a href="#inicio">Inicio</a></li>
-      <li class="fas fa-cow"><a href="#dashboard">Animals</a></li>
-      <li><a href="#reportes">health</a></li>
-      <li><a href="#configuracion">Reproduction</a></li>
+    <div>
+      <h2>Menú</h2>
+    </div>
+    <ul class="iconList">
+      <li class="fas fa-cow icon"><a>Animals</a></li>
+      <li class="fas fa-syringe icon"><a>Health</a></li>
+      <li class="fas fa-baby-carriage icon"><a>Reproduction</a></li>
+    </ul>
+    <ul class="logOut">
+      <li class="fas fa-power-off icon">
+        <a>Log out</a>
+      </li>
     </ul>
   </nav>
-  <div class="content">
+  <nav class="content">
     <h1>Creacion del esqueleto</h1>
     <p>esqueleto simple donde se pondran los datos</p>
-  </div>
+  </nav>
 </div>
 <router-outlet />
