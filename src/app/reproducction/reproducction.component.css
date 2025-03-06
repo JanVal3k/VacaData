@@ -1,0 +1,10 @@
+.contentReproduction{
+    position: absolute;
+    display: flex;
+    inset: 20px;
+    justify-content: center;
+    align-items: center;
+    background-color: blue;
+    border-radius: 14px;
+    z-index: 3;
+}

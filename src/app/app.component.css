@@ -21,13 +21,14 @@
     border-top-left-radius: 16px;
 }
 .content {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
     background-color: #387c2b;
     color: #fff;
-    flex-grow: 1;
-    padding: 20px;;
+    padding: 10px;
     border-bottom-right-radius: 16px;
     border-top-right-radius: 16px;
     position: relative;
-    z-index: 1;
 }
 
