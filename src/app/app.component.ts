@@ -12,5 +12,8 @@ import { ReproducctionComponent } from "./reproducction/reproducction.component"
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'mainVacaData';
+    Board='';
+    getBoard(boardName: string){
+      this.Board = boardName;
+    }
 }

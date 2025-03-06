@@ -1,11 +1,15 @@
 <div class="container">
   <nav class="menu">
-    <app-menu />
+    <app-menu (selectBoard)="getBoard($event)" />
   </nav>
   <nav class="content">
+    @if (Board === "animalsBoard") {
     <app-animals />
+    } @else if (Board === "healthBoard") {
     <app-health />
+    } @else if(Board === "reproductionBoard") {
     <app-reproducction />
+    }
   </nav>
 </div>
 <router-outlet />

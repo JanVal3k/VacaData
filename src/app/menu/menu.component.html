@@ -2,9 +2,15 @@
   <h2>Menú</h2>
 </div>
 <ul class="iconList">
-  <li class="fas fa-cow icon"><a>Animals</a></li>
-  <li class="fas fa-syringe icon"><a>Health</a></li>
-  <li class="fas fa-baby-carriage icon"><a>Reproduction</a></li>
+  <li (click)="showItem('animalsBoard')" class="fas fa-cow icon">
+    <a>Animals</a>
+  </li>
+  <li (click)="showItem('healthBoard')" class="fas fa-syringe icon">
+    <a>Health</a>
+  </li>
+  <li (click)="showItem('reproductionBoard')" class="fas fa-baby-carriage icon">
+    <a>Reproduction</a>
+  </li>
 </ul>
 <ul class="logOut">
   <li class="fas fa-power-off icon">
