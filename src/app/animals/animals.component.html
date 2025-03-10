@@ -1,4 +1,5 @@
 <div class="contentAnimals">
+  @for (item of countCards; track $index) {
   <div class="card">
     <div class="top-section">
       <div class="border"></div>
@@ -31,8 +32,9 @@
       </div>
     </div>
   </div>
+  }
   <div class="ButtonCard">
-    <button class="newCard">
+    <button class="newCard" (click)="plusCard()">
       <span class="shadow"></span>
       <span class="edge"></span>
       <div class="front">
