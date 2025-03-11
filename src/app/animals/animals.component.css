@@ -37,6 +37,10 @@
     flex-direction: column;
     background: linear-gradient(45deg, rgb(4, 159, 187) 0%, rgb(80, 246, 255) 100%);
     position: relative;
+    box-shadow: 0px 10px 8px -4px #fff;
+  }
+  .card .top-section:active{
+    box-shadow: 0px 5px 8px -4px #fff;
   }
   .card .top-section .icons {
     position: absolute;
@@ -161,7 +165,6 @@
 /*BUTTON NEW CARD*/
 .ButtonCard{
   display: flex;
-    padding: 15px;
     margin-left: 20px;
     margin-top: 20px;
     justify-content: center;
@@ -263,4 +266,17 @@
 .txtBtnCard:hover{
   font-size: 167px;
 }
-  
+.imageContent{
+  display: flex;
+  position: absolute;
+  margin: 30px 0px 10px;
+  width: 100%;
+  height: 80%;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.btnImage{
+  cursor: pointer;
+  font-size: 100px;
+}
