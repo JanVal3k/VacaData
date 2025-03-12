@@ -3,6 +3,8 @@
     flex-direction: row;
     flex-wrap: wrap;
     position: absolute;
+    justify-content: center;
+    align-items: center;
     inset: 20px;
     max-width: 100%;    
     background-color: green;

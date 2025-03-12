@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-create-animals',
@@ -7,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './create-animals.component.css'
 })
 export class CreateAnimalsComponent {
-
+  @Output() newAnimal = new EventEmitter<string>();
+  createAnimal(animal:string){
+    this.newAnimal.emit(animal);
+  }
 }

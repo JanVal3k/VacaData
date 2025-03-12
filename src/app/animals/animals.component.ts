@@ -11,7 +11,7 @@ import { CreateAnimalsComponent } from "../create-animals/create-animals.compone
 export class AnimalsComponent {
     @Output() selectHealth = new EventEmitter<string>();
     countCards:number[] = [];
-    
+    newAnimal = false;
 
     showHealth(item:string){
       this.selectHealth.emit(item);

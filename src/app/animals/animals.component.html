@@ -37,7 +37,7 @@
   </div>
   } @if (countCards.length <=11) {
   <div class="ButtonCard">
-    <button class="newCard" (click)="plusCard()">
+    <button class="newCard" (click)="newAnimal = true">
       <span class="shadow"></span>
       <span class="edge"></span>
       <div class="front">
@@ -45,6 +45,7 @@
       </div>
     </button>
   </div>
+  } @if(newAnimal === true){
+  <app-create-animals (newAnimal)="plusCard()" />
   }
-  <app-create-animals />
 </div>
