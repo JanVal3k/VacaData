@@ -1,0 +1,13 @@
+.contentCreateAnimals{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: absolute;
+    inset: 20px;
+    max-width: 100%;    
+    background-color: green;
+    border-radius: 14px;
+    z-index: 1;
+    overflow-y: auto;
+    overflow-x: hidde
+}
