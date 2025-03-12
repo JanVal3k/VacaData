@@ -3,8 +3,9 @@
     <app-menu (selectBoard)="getBoard($event)" />
   </nav>
   <nav class="content">
-    @if (Board === "animalsBoard") {
     <app-animals (selectHealth)="getBoard($event)" />
+    @if (Board === "animalsBoard") {
+    <h1>esto es para crear</h1>
     } @else if (Board === "healthBoard") {
     <app-health />
     } @else if(Board === "reproductionBoard") {

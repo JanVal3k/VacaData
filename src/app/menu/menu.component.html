@@ -1,19 +1,9 @@
-<div>
-  <h2>Menú</h2>
+<div class="iconList">
+  <h2>
+    VacaData
+    <span class="fas fa-cow"></span>
+  </h2>
 </div>
-<ul class="iconList">
-  <li (click)="showItem('animalsBoard')" class="fas fa-user icon">
-    <a>Profile (User name)</a>
-  </li>
-  <li (click)="showItem('animalsBoard')" class="fas fa-cow icon">
-    <a>Animals</a>
-  </li>
-  <li (click)="showItem('healthBoard')" class="fas fa-chart-line icon">
-    <a>Monitoring</a>
-  </li>
-</ul>
-<ul class="logOut">
-  <li class="fas fa-power-off icon">
-    <a>Log out</a>
-  </li>
-</ul>
+<div class="userStyle">
+  <span (click)="showItem('animalsBoard')" class="fas fa-user"> </span>
+</div>
