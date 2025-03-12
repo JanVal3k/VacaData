@@ -16,10 +16,12 @@ export class AnimalsComponent {
     showHealth(item:string){
       this.selectHealth.emit(item);
     }
-    plusCard(){
+    plusCard(board: string){
+
       const lastCard = this.countCards.length > 0 ? this.countCards.at(-1)! : 0;
       this.countCards.push(lastCard+1);
-      console.log(`este es el ulltimo item: ${lastCard}`);
+      this.showHealth(board);
+      this.newAnimal = false;
     }
 
     deleteCard($item:number, $index:number){

@@ -46,6 +46,6 @@
     </button>
   </div>
   } @if(newAnimal === true){
-  <app-create-animals (newAnimal)="plusCard()" />
+  <app-create-animals (newAnimal)="plusCard($event)" />
   }
 </div>

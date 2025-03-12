@@ -5,7 +5,7 @@
   <nav class="content">
     <app-animals (selectHealth)="getBoard($event)" />
     @if (Board === "animalsBoard") {
-    <h1>esto es para crear</h1>
+    <app-animals (selectHealth)="getBoard($event)" />
     } @else if (Board === "healthBoard") {
     <app-health />
     } @else if(Board === "reproductionBoard") {
