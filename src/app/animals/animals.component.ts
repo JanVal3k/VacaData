@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { CreateAnimalsComponent } from "../create-animals/create-animals.component";
 
 @Component({
   selector: 'app-animals',
   standalone: true,
-  imports: [],
+  imports: [CreateAnimalsComponent],
   templateUrl: './animals.component.html',
   styleUrl: './animals.component.css'
 })
