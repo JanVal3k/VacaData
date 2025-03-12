@@ -2,14 +2,14 @@
   <h2>Menú</h2>
 </div>
 <ul class="iconList">
+  <li (click)="showItem('animalsBoard')" class="fas fa-user icon">
+    <a>Profile (User name)</a>
+  </li>
   <li (click)="showItem('animalsBoard')" class="fas fa-cow icon">
     <a>Animals</a>
   </li>
-  <li (click)="showItem('healthBoard')" class="fas fa-syringe icon">
-    <a>Health</a>
-  </li>
-  <li (click)="showItem('reproductionBoard')" class="fas fa-baby-carriage icon">
-    <a>Reproduction</a>
+  <li (click)="showItem('healthBoard')" class="fas fa-chart-line icon">
+    <a>Monitoring</a>
   </li>
 </ul>
 <ul class="logOut">
