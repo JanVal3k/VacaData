@@ -7,7 +7,6 @@
     max-width: 100%;    
     background-color: yellow;
     border-radius: 14px;
-    z-index: 1;
     overflow-y: auto;
     overflow-x: hidde
 }

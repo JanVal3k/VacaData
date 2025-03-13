@@ -5,5 +5,14 @@
   </h2>
 </div>
 <div class="userStyle">
-  <span (click)="showItem('animalsBoard')" class="fas fa-user"> </span>
+  <span (click)="showMenu()" class="fas fa-user"> </span>
+  @if(openMenu === true){
+  <div class="input">
+    <button class="value">Public profile</button>
+    <button class="value">Account</button>
+    <button class="value">Appearance</button>
+    <button class="value">Accessibility</button>
+    <button class="value">Notifications</button>
+  </div>
+  }
 </div>

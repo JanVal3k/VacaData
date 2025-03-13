@@ -13,14 +13,13 @@
     flex-direction: column;
 }
 .menu {
-    position: relative;
     display: flex;
     flex-direction: row;
+    position: relative;
     justify-content: space-between;
     align-items: center;
     background-color: #000700;
     color: #fff;
-    position: relative;
     height: 50px;
     width: 100%;
     padding: 10px;
@@ -33,5 +32,6 @@
     color: #fff;
     padding: 10px;
     position: relative;
+    z-index: -10;
 }
 
