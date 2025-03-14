@@ -4,11 +4,12 @@
     flex-direction: row;
     padding: 20px;
     flex-wrap: wrap;
+    height: 84vh;
     max-height: 100%;
     max-width: 100%;    
-    background-color: yellow;
+    /* background-color: yellow; */
     overflow-y: auto;
-    overflow-x: hidde;
+    overflow-x: hidden;
 }
 /* CARDS */
 .card {
