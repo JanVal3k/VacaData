@@ -1,14 +1,14 @@
 .contentAnimals{
     display: flex;
+    flex: 1;
     flex-direction: row;
+    padding: 20px;
     flex-wrap: wrap;
-    position: absolute;
-    inset: 20px;
+    max-height: 100%;
     max-width: 100%;    
     background-color: yellow;
-    border-radius: 14px;
     overflow-y: auto;
-    overflow-x: hidde
+    overflow-x: hidde;
 }
 /* CARDS */
 .card {
@@ -36,10 +36,6 @@
     flex-direction: column;
     background: linear-gradient(45deg, rgb(4, 159, 187) 0%, rgb(80, 246, 255) 100%);
     position: relative;
-    box-shadow: 0px 10px 8px -4px #fff;
-  }
-  .card .top-section:active{
-    box-shadow: 0px 5px 8px -4px #fff;
   }
   .card .top-section .icons {
     position: absolute;
@@ -163,7 +159,7 @@
 }
 /*BUTTON NEW CARD*/
 .ButtonCard{
-  display: flex;
+    display: flex;
     margin-left: 20px;
     margin-top: 20px;
     justify-content: center;
