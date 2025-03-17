@@ -1,3 +1,27 @@
 <div class="contentCreateAnimals">
-  <button (click)="createAnimal('animalsBoard')">Guardar Animal</button>
+  <div class="bovineImage">
+    <img
+      src="https://i.pinimg.com/736x/13/e2/d9/13e2d927506ba20a3b91bb8bdff299e8.jpg"
+    />
+  </div>
+  <div class="divContentTxts">
+    <input type="text" placeholder="nombre Animal" />
+    <input type="date" placeholder="fecha nacimiento" />
+    <select name="razas">
+      <option>raza 1</option>
+      <option>raza 2</option>
+      <option>raza 3</option>
+    </select>
+    <input type="text" placeholder="Madre" />
+    <input type="text" placeholder="Padre" />
+    <input type="text" placeholder="Peso" />
+    <input type="text" placeholder="Sexo" />
+    <input type="text" placeholder="direccion" />
+
+    <button>
+      <span class="button_top" (click)="createAnimal('animalsBoard')">
+        Guardar Animal
+      </span>
+    </button>
+  </div>
 </div>
