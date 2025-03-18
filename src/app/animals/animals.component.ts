@@ -17,11 +17,14 @@ export class AnimalsComponent {
       this.selectHealth.emit(item);
     }
     plusCard(board: string){
-
+      if(board === 'Closed'){
+        this.newAnimal = false;  
+      }else{
       const lastCard = this.countCards.length > 0 ? this.countCards.at(-1)! : 0;
       this.countCards.push(lastCard+1);
       this.showHealth(board);
       this.newAnimal = false;
+    }
     }
 
     deleteCard($item:number, $index:number){
