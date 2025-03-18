@@ -7,16 +7,19 @@
     justify-content: center;
     align-items: center;
     inset: 20px;
+    margin-left: 63.9vh;
     margin-top: 70px;
-    max-height: 100vh;
-    max-width: 100%;    
-    background-color: blue;
+    height: 88vh;
+    width: 55.2vh;    
+    background-color: rgba(246, 226, 203, 0.684);
     border-radius: 14px;
     overflow-y: auto;
     overflow-x: hidde
 }
 .bovineImage{
     display: flex;
+    flex-direction: column;
+    margin-top: 20px;
     min-width: 150px;
     min-height: 150px;
     height: 250px;
@@ -37,6 +40,54 @@
 .bovineImage:hover{
     transform: scale(1.1);
 }
+
+.btnChangeImg {
+  position: absolute;
+  max-width: 5vh;
+  color: rgba(255, 255, 255, 0.692);
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.397);
+  background: rgba(255, 255, 255, 0.068);
+  overflow: hidden;
+  font-size: 0.9rem;
+  font-weight: 600;
+  gap: 8px;
+  border-radius: 5px;
+  margin: 0 30 5px;
+  transition: 0.2s;
+  border: 1px solid transparent;
+}
+
+.btnChangeImg:hover {
+  border-color: rgba(255, 255, 255, 0.623);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.144),
+    rgba(255, 255, 255, 0.247),
+    rgba(255, 255, 255, 0.39)
+  );
+  box-shadow: 0 6px rgba(255, 255, 255, 0.623);
+  transform: translateY(-6px);
+}
+
+.btnChangeImg:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+.btnPosition {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.851);
+  background: rgba(255, 255, 255, 0.572);
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
 .divContentTxts{
     display: flex;
     flex-direction: column;
@@ -56,6 +107,7 @@ input,select {
     background-color: #f3f3f3;
     border-radius: 10px;
     transition: all 0.5s;
+    box-shadow: 5px 7px 10px rgba(0, 0, 0, 0.555);
   }
   
   input:hover, select:hover,
