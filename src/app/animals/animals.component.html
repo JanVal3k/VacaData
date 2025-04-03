@@ -8,26 +8,26 @@
           <button class="button" (click)="showHealth('healthBoard')">
             <i class="fas fa-suitcase-medical icon"></i>
           </button>
-          <button class="button" (click)="deleteCard(item, $index)">
+          <button class="button">
             <i class="fas fa-trash icon"></i>
           </button>
         </div>
       </div>
     </div>
     <div class="bottom-section">
-      <span class="title">Animal Name</span>
+      <span class="title">Name: {{ item.NameBonine }}</span>
       <div class="row row1">
         <div class="item">
-          <span class="big-text">Age</span>
-          <span class="regular-text">% left</span>
+          <span class="big-text">{{ item.Born_Date }}</span>
+          <span class="regular-text">Born day</span>
         </div>
         <div class="item">
-          <span class="big-text">Weight</span>
-          <span class="regular-text">% middle</span>
+          <span class="big-text">{{ item.Weight }}</span>
+          <span class="regular-text">Weight</span>
         </div>
         <div class="item">
-          <span class="big-text">Race</span>
-          <span class="regular-text">% right</span>
+          <span class="big-text">{{ item.Race }}</span>
+          <span class="regular-text">Race</span>
         </div>
       </div>
     </div>

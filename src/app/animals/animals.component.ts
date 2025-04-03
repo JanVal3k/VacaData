@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CreateAnimalsComponent } from "../create-animals/create-animals.component";
+import { BovinesService } from '../services/bovines.service';
+import { Bovine } from '../../models/Bovines.model';
 
 @Component({
   selector: 'app-animals',
@@ -10,24 +12,40 @@ import { CreateAnimalsComponent } from "../create-animals/create-animals.compone
 })
 export class AnimalsComponent {
     @Output() selectHealth = new EventEmitter<string>();
-    countCards:number[] = [];
+    countCards:Bovine[] = [];
     newAnimal = false;
 
+    constructor (private bovineService: BovinesService){}   
+    ngOnInit(){
+      this.bovineService.getBovines().subscribe(
+        // (datos) =>{
+        //   console.log("datos recividos en countCards", datos);
+        //   this.countCards = datos;
+        // },
+        (datos) => {
+          console.log("Datos recibidos en countCards:", datos);
+          this.countCards = datos.data;  
+        },
+        (error) =>{
+          console.error("Error al obtener datos:", error);
+          alert(`${error} Baia baia algo salió malardo`);
+        }
+      )
+    }
     showHealth(item:string){
       this.selectHealth.emit(item);
     }
+
     plusCard(board: string){
       if(board === 'Closed'){
         this.newAnimal = false;  
       }else{
-      const lastCard = this.countCards.length > 0 ? this.countCards.at(-1)! : 0;
-      this.countCards.push(lastCard+1);
       this.showHealth(board);
       this.newAnimal = false;
     }
     }
 
-    deleteCard($item:number, $index:number){
-      this.countCards.splice($index, $item);
-    }
+    // deleteCard( $index:number){
+    //   this.countCards.splice($index, 1);
+    // }
 }
