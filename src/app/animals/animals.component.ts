@@ -18,12 +18,7 @@ export class AnimalsComponent {
     constructor (private bovineService: BovinesService){}   
     ngOnInit(){
       this.bovineService.getBovines().subscribe(
-        // (datos) =>{
-        //   console.log("datos recividos en countCards", datos);
-        //   this.countCards = datos;
-        // },
         (datos) => {
-          console.log("Datos recibidos en countCards:", datos);
           this.countCards = datos.data;  
         },
         (error) =>{
