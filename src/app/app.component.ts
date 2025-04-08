@@ -4,10 +4,11 @@ import { MenuComponent } from "./menu/menu.component";
 import { AnimalsComponent } from "./animals/animals.component";
 import { HealthComponent } from "./health/health.component";
 import { ReproducctionComponent } from "./reproducction/reproducction.component";
+import { LoginComponent } from "./login/login.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MenuComponent, AnimalsComponent, HealthComponent,ReproducctionComponent],
+  imports: [RouterOutlet, MenuComponent, AnimalsComponent, HealthComponent, ReproducctionComponent, LoginComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
