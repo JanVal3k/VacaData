@@ -6,6 +6,7 @@
 }
 
 body {
+	flex:1;
 	background: #f6f5f7;
 	display: flex;
 	justify-content: center;
@@ -46,8 +47,8 @@ a {
 
 button {
 	border-radius: 20px;
-	border: 1px solid #FF4B2B;
-	background-color: #FF4B2B;
+	border: 1px solid #000000;
+	background-color: #000000;
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
@@ -80,13 +81,8 @@ form {
 	height: 100%;
 	text-align: center;
 }
-
-input {
-	background-color: #eee;
-	border: none;
-	padding: 12px 15px;
-	margin: 8px 0;
-	width: 100%;
+i{
+	padding-left: 10px;
 }
 
 .container {
@@ -161,9 +157,7 @@ input {
 
 .overlay {
 	background: #FF416C;
-	background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-	background: linear-gradient(to right, #FF4B2B, #FF416C);
-	background-repeat: no-repeat;
+	background: #000000;
 	background-size: cover;
 	background-position: 0 0;
 	color: #FFFFFF;
@@ -217,17 +211,105 @@ input {
 
 .social-container a {
 	border: 1px solid #DDDDDD;
-	border-radius: 50%;
+	border-radius: 10px;
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
 	margin: 0 5px;
 	height: 40px;
-	width: 40px;
+	width: 170px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.491);
 }
+/* inputs styles*/
+.input-container {
+	position: relative;
+	margin: 20px auto;
+	width: 200px;
+  }
+  
+  .input-container input[type="text"] {
+	font-size: 20px;
+	width: 100%;
+	border: none;
+	border-bottom: 2px solid #ccc;
+	padding: 5px 0;
+	background-color: transparent;
+	outline: none;
+  }
+  .input-container input[type="email"] {
+	font-size: 20px;
+	width: 100%;
+	border: none;
+	border-bottom: 2px solid #ccc;
+	padding: 5px 0;
+	background-color: transparent;
+	outline: none;
+  }
+  .input-container input[type="password"] {
+	font-size: 20px;
+	width: 100%;
+	border: none;
+	border-bottom: 2px solid #ccc;
+	padding: 5px 0;
+	background-color: transparent;
+	outline: none;
+  }
+  
+  .input-container .label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #ccc;
+	transition: all 0.3s ease;
+	pointer-events: none;
+  }
+  
+  .input-container .underline {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 2px;
+	width: 100%;
+	background-color: #333;
+	transform: scaleX(0);
+	transition: all 0.3s ease;
+  }
+  .input-container input[type="text"]:focus ~ .label,
+  .input-container input[type="text"]:valid ~ .label {
+	top: -20px;
+	font-size: 16px;
+	color: #333;
+  }
 
+  .input-container input[type="text"]:focus ~ .underline,
+  .input-container input[type="text"]:valid ~ .underline {
+	transform: scaleX(1);
+  }
+  /*------------------*/
+  .input-container input[type="password"]:focus ~ .label,
+  .input-container input[type="password"]:valid ~ .label {
+	top: -20px;
+	font-size: 16px;
+	color: #333;
+  }
+  .input-container input[type="password"]:focus ~ .underline,
+  .input-container input[type="password"]:valid ~ .underline {
+	transform: scaleX(1);
+  }
+   /*------------------*/
+   .input-container input[type="email"]:focus ~ .label,
+   .input-container input[type="email"]:valid ~ .label {
+	 top: -20px;
+	 font-size: 16px;
+	 color: #333;
+   }
+   .input-container input[type="email"]:focus ~ .underline,
+   .input-container input[type="email"]:valid ~ .underline {
+	 transform: scaleX(1);
+   }
+  
 footer {
-    background-color: #222;
+    background-color: #000000;
     color: #fff;
     font-size: 14px;
     bottom: 0;

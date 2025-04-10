@@ -1,17 +1,20 @@
 <div class="container">
+  @if (login === false) {
+  <nav class="loginNav"><app-login /></nav>
+  }@else {
   <nav class="menu">
     <app-menu (selectBoard)="getBoard($event)" />
   </nav>
   <nav class="content">
-    <app-login />
     <!-- <app-animals /> -->
-    @if (Board === "animalsBoard") {
+    <!-- @if (Board === "animalsBoard") {
     <app-animals (selectHealth)="getBoard($event)" />
     } @else if (Board === "healthBoard") {
     <app-health />
     } @else if(Board === "reproductionBoard") {
     <app-reproducction />
-    }
+    } -->
   </nav>
+  }
 </div>
 <router-outlet />

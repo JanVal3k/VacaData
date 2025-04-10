@@ -14,6 +14,7 @@ import { LoginComponent } from "./login/login.component";
 })
 export class AppComponent {
     Board='';
+    login = false;
     getBoard(boardName: string){
       this.Board = boardName;
     }
