@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { getSession } from 'auth-astro/server'; 
 
 @Component({
   selector: 'app-create-animals',
