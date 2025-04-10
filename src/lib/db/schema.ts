@@ -43,6 +43,20 @@ export const verificationTokens = table('verification_tokens', {
   t.primaryKey({ columns: [table.identifier, table.token] })
 ]);
 
+export const bovines = table('Bovines', {
+  Bovines_id: t.integer('Bovines_id').primaryKey(),
+  NameBonine: t.text('NameBonine').notNull(),
+  Mother: t.text('Mother'),
+  Father: t.text('Father'),
+  Born_Date: t.text('Born_Date').notNull(),
+  Address: t.text('Address'),
+  Race: t.real('Race').notNull(),
+  Weight: t.real('Weight').notNull(),
+  Sex: t.text('Sex').notNull(),
+  Reproduction: t.text('Reproduction').notNull(),
+  Users_id: t.text('Users_id').notNull().references(() => users.id, { onDelete: "cascade" }),
+  created_at: t.integer('created_at', { mode: 'timestamp' }).defaultNow(),
+});
 
 export const usersTable = users;
 export const accountsTable = accounts;
