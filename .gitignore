@@ -42,3 +42,6 @@ testem.log
 Thumbs.db
 # astro
 .env
+# environments
+src/environments/environment.ts
+src/environments/environment.prod.ts

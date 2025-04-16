@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { createClient } from '@libsql/client';
+import { firebaseConfig } from '../../environments/environment';
+
 
 const client = createClient({
-  url: "libsql://db-vacadata-janval3k.aws-us-east-1.turso.io",
-  authToken: "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDM0NTI1NTcsImlkIjoiMzU5YzA0MzMtMzdiZi00ZjMxLWI4OTYtZTNhNTYzMDc5NTg4IiwicmlkIjoiZTgzY2UxYTgtZGU1NC00ZjEzLTk2MzQtZjAwMzE1Y2QxNWZlIn0.gTDxhZdlu9eaYITFvoY0y9Ywb09Zw0M1CbLAfcL33SV83euZxiI0HMb0F5agteHymmz1R3cOn4YBRMJKvAKdCg"
+  url: firebaseConfig.turso.TURSO_URL,
+  authToken: firebaseConfig.turso.TURSO_AUTH_TOKEN
 });
 
 @Injectable({
