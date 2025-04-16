@@ -1,9 +1,5 @@
-import { type APIRoute } from "astro";
+
 import { db } from "../../lib/db/db";
-import { bovines } from "../../lib/db/schema"; 
-import { desc } from "drizzle-orm";
-
-
   export const GET: APIRoute = async () => {
     try {
       const result = await db.select().from(bovines).orderBy(desc(bovines.Bovines_id));

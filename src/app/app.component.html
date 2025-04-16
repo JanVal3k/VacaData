@@ -6,14 +6,14 @@
     <app-menu (selectBoard)="getBoard($event)" />
   </nav>
   <nav class="content">
-    <!-- <app-animals /> -->
-    <!-- @if (Board === "animalsBoard") {
+    <app-animals />
+    @if (Board === "animalsBoard") {
     <app-animals (selectHealth)="getBoard($event)" />
     } @else if (Board === "healthBoard") {
     <app-health />
     } @else if(Board === "reproductionBoard") {
     <app-reproducction />
-    } -->
+    }
   </nav>
   }
 </div>

@@ -6,6 +6,7 @@ import { HealthComponent } from "./health/health.component";
 import { ReproducctionComponent } from "./reproducction/reproducction.component";
 import { LoginComponent } from "./login/login.component";
 
+
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, MenuComponent, AnimalsComponent, HealthComponent, ReproducctionComponent, LoginComponent],
@@ -15,6 +16,7 @@ import { LoginComponent } from "./login/login.component";
 export class AppComponent {
     Board='';
     login = false;
+
     getBoard(boardName: string){
       this.Board = boardName;
     }

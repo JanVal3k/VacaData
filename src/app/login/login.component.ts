@@ -1,4 +1,6 @@
 import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { FirebaseService } from '../services/firebase.service';
+
 
 @Component({
   selector: 'app-login',
@@ -9,6 +11,13 @@ export class LoginComponent implements AfterViewInit {
   @ViewChild('signUpButton') signUpButton!: ElementRef;
   @ViewChild('signInButton') signInButton!: ElementRef;
   @ViewChild('container') container!: ElementRef;
+  isLoggedIn = false;
+
+  constructor(private firebaseSevice: FirebaseService){}
+
+  ngRegistrer(){
+    this.firebaseSevice.loginWithGoogle();
+  }
 
   ngAfterViewInit() {
     if (this.signUpButton && this.signInButton && this.container) {

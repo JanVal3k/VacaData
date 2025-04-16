@@ -3,24 +3,24 @@
     <form action="#">
       <h1>Crear Cuenta</h1>
       <div class="social-container">
-        <a href="#" class="social"
+        <a href="#" id="iniciarConGoogle" class="social" (click)="ngRegistrer()"
           >Continua con Google<i class="fab fa-google"></i
         ></a>
       </div>
       <span>o utiliza otro email para regístrate</span>
       <div class="input-container">
-        <input type="text" id="input" required="" />
-        <label for="input" class="label">Nombre:</label>
+        <input type="text" id="NombreRegistro" required="" />
+        <label for="NombreRegistro" class="label">Nombre:</label>
         <div class="underline"></div>
       </div>
       <div class="input-container">
-        <input type="Email" id="input" required="" />
-        <label for="input" class="label">Email:</label>
+        <input type="Email" id="EmailRegistro" required="" />
+        <label for="EmailRegistro" class="label">Email:</label>
         <div class="underline"></div>
       </div>
       <div class="input-container">
-        <input type="password" id="input" required="" />
-        <label for="input" class="label">Constraseña:</label>
+        <input type="password" id="PasswordRegistro" required="" />
+        <label for="PasswordRegistro" class="label">Constraseña:</label>
         <div class="underline"></div>
       </div>
       <button>Regístrate</button>
@@ -38,13 +38,13 @@
       <span>O</span>
       <!-- <input type="email" placeholder="Email" /> -->
       <div class="input-container">
-        <input type="text" id="input" required="" />
-        <label for="input" class="label">Nombre:</label>
+        <input type="text" id="NombreInicio" required="" />
+        <label for="NombreInicio" class="label">Nombre:</label>
         <div class="underline"></div>
       </div>
       <div class="input-container">
-        <input type="password" id="input" required="" />
-        <label for="input" class="label">Constraseña:</label>
+        <input type="password" id="ConstraseñaInicio" required="" />
+        <label for="ConstraseñaInicio" class="label">Constraseña:</label>
         <div class="underline"></div>
       </div>
       <a href="#">¿Olvidaste tu contraseña?</a>
