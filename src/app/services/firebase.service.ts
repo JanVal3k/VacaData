@@ -16,7 +16,8 @@ export class FirebaseService {
 
   constructor(private tursoService: TursoService) {
     console.log(`fireBAse inicializado con: ${this.app}`) 
-    }
+  }
+
   loginWithGoogle() {
     const provider = new GoogleAuthProvider();
     return signInWithPopup(this.auth, provider)
@@ -38,5 +39,13 @@ export class FirebaseService {
       .catch((error) => {
         console.error('Error al iniciar sesión con Google:', error);
       });
+  }
+
+  getCurrentUser(){
+    return this.auth.currentUser;
+  }
+
+  signOut(){
+    this.auth.signOut();
   }
 }

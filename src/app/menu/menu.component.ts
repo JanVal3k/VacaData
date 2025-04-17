@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output, HostListener, ElementRef } from '@angular/core';
+import { FirebaseService } from '../services/firebase.service';
 
 @Component({
   selector: 'app-menu',
@@ -9,15 +10,30 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class MenuComponent {
   openMenu = false;
+  user: any = null;
+
   @Output() selectBoard = new EventEmitter<string>();
+  constructor(private firebaseService: FirebaseService, private eRef: ElementRef){}
+  
+  ngOnInit(){
+    this.firebaseService.auth.onAuthStateChanged((user) => {
+      this.user = user;
+    });
+    console.log('foto: ',this.user.photoURL)
+  }
+  signOuth(){
+    this.firebaseService.signOut();
+  }
   showItem(item:string){
     this.selectBoard.emit(item);
   }
   showMenu(){
-    if(this.openMenu === false){
-      this.openMenu = true
-    }else{
-      this.openMenu = false
+    this.openMenu = !this.openMenu;
+  }
+  @HostListener('document:click', ['$event'])
+  handleClickOutside(event: Event) {
+    if (this.openMenu && !this.eRef.nativeElement.contains(event.target)) {
+      this.openMenu = false;
     }
   }
 }

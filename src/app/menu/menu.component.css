@@ -1,4 +1,11 @@
-
+button{
+  font-family: 'Times New Roman', Times, serif;
+  all: unset;
+  cursor: pointer;
+}
+i{
+  margin: 10px 0 10px 10px;
+}
 .iconList {
   display: inline-block;
   font-family: 'Times New Roman', Times, serif;
@@ -79,4 +86,10 @@
   transition: 300ms;
   filter: blur(1px);
   transform: scale(0.95,0.95);
+}
+.userPhoto{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
 }

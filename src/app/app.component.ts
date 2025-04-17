@@ -5,6 +5,7 @@ import { AnimalsComponent } from "./animals/animals.component";
 import { HealthComponent } from "./health/health.component";
 import { ReproducctionComponent } from "./reproducction/reproducction.component";
 import { LoginComponent } from "./login/login.component";
+import { FirebaseService } from './services/firebase.service';
 
 
 @Component({
@@ -16,6 +17,13 @@ import { LoginComponent } from "./login/login.component";
 export class AppComponent {
     Board='';
     login = false;
+    constructor(private firabaseService: FirebaseService){
+
+      this.firabaseService.auth.onAuthStateChanged((user)=>{
+        this.login = !!user;
+        console.log(`Estado del login: ${this.login}`);
+      });
+    }
 
     getBoard(boardName: string){
       this.Board = boardName;

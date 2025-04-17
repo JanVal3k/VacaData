@@ -5,14 +5,20 @@
   </h2>
 </div>
 <div class="userStyle">
-  <span (click)="showMenu()" class="fas fa-user"> </span>
-  @if(openMenu === true){
+  @if(user?.photoURL) {<img
+    src="{{ user.photoURL }}"
+    class="userPhoto"
+    (click)="showMenu()"
+  />}@else {<span (click)="showMenu()" class="fas fa-user"></span>} @if(openMenu
+  === true){
   <div class="input">
-    <button class="value">Public profile</button>
+    <button class="value">{{ user.displayName }}</button>
     <button class="value">Account</button>
     <button class="value">Appearance</button>
     <button class="value">Accessibility</button>
-    <button class="value">Notifications</button>
+    <button (click)="signOuth()">
+      <i class="fa-solid fa-arrow-right-from-bracket"></i>Sign Out
+    </button>
   </div>
   }
 </div>
