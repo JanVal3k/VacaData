@@ -19,7 +19,6 @@ export class MenuComponent {
     this.firebaseService.auth.onAuthStateChanged((user) => {
       this.user = user;
     });
-    console.log('foto: ',this.user.photoURL)
   }
   signOuth(){
     this.firebaseService.signOut();
