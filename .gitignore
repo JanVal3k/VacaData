@@ -43,5 +43,5 @@ Thumbs.db
 # astro
 .env
 # environments
-src/environments/environment.ts
-src/environments/environment.prod.ts
+/src/environments/environment.ts
+/src/environments/environment.prod.ts
