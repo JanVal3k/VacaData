@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { firebaseConfig } from '../../environments/environment';
-import { TursoService } from './turso.service';
+import { UsersService } from './users.service';
 import { ExtendedUserCredential } from '../../types/firebase.types';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class FirebaseService {
   firestore = getFirestore(this.app);
   auth = getAuth(this.app);
 
-  constructor(private tursoService: TursoService) {
+  constructor(private usersService: UsersService) {
     console.log(`fireBAse inicializado con: ${this.app}`) 
   }
 
@@ -28,13 +28,20 @@ export class FirebaseService {
 
         console.log('Lo que trae el objeto usuario', user);
 
-        if(extenderResult._tokenResponse.isNewUser){
+        if (extenderResult._tokenResponse.isNewUser) {
           alert('¡Bienvenido! Tu cuenta ha sido creada.');
-        this.tursoService.saveUser(user);
-        }else{
-        alert('¡Bienvenido de nuevo! Has iniciado sesión.');
+          
+          this.usersService.saveUser(user).subscribe({
+            next: (response) => {
+              console.log('Usuario guardado en Turso:', response);
+            },
+            error: (err) => {
+              console.error('Error al guardar el usuario en Turso:', err);
+            }
+          });
+        } else {
+          alert('¡Bienvenido de nuevo! Has iniciado sesión.');
         }
-
       })
       .catch((error) => {
         console.error('Error al iniciar sesión con Google:', error);

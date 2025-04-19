@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-create-animals',
+  standalone: true,
   imports: [],
   templateUrl: './create-animals.component.html',
   styleUrl: './create-animals.component.css'

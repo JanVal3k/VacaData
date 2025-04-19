@@ -7,10 +7,10 @@ import { Bovine } from '../../models/Bovines.model';
   providedIn: 'root'
 })
 export class BovinesService {
-  private apiUrl = 'http://localhost:4321/api/Bovines';
+  private apiUrl = 'http://localhost:3000/bovines';
   constructor(private http: HttpClient) {}
-
-  getBovines(): Observable<{ success: boolean; data: Bovine[] }> { 
-    return this.http.get<{ success: boolean; data: Bovine[] }>(this.apiUrl);
+  
+  getBovines(): Observable<Bovine[]> {
+    return this.http.get<Bovine[]>(this.apiUrl);
   }
 }

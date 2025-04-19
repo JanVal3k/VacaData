@@ -11,36 +11,34 @@ import { Bovine } from '../../models/Bovines.model';
   styleUrl: './animals.component.css'
 })
 export class AnimalsComponent {
-    @Output() selectHealth = new EventEmitter<string>();
-    countCards:Bovine[] = [];
-    newAnimal = false;
+  @Output() selectHealth = new EventEmitter<string>();
+  countCards: Bovine[] = [];
+  newAnimal = false;
 
-    constructor (private bovineService: BovinesService){}   
-    ngOnInit(){
-      this.bovineService.getBovines().subscribe(
-        (datos) => {
-          this.countCards = datos.data;  
-        },
-        (error) =>{
-          console.error("Error al obtener datos:", error);
-          alert(`${error} Baia baia algo salió malardo`);
-        }
-      )
-    }
-    showHealth(item:string){
-      this.selectHealth.emit(item);
-    }
+  constructor(private bovineService: BovinesService) {}
 
-    plusCard(board: string){
-      if(board === 'Closed'){
-        this.newAnimal = false;  
-      }else{
+  ngOnInit() {
+    this.bovineService.getBovines().subscribe(
+      (datos) => {
+        this.countCards = datos;
+      },
+      (error) => {
+        console.error("Error al obtener datos:", error);
+        alert(`${error} Baia baia algo salió malardo`);
+      }
+    );
+  }
+
+  showHealth(item: string) {
+    this.selectHealth.emit(item);
+  }
+
+  plusCard(board: string) {
+    if (board === 'Closed') {
+      this.newAnimal = false;
+    } else {
       this.showHealth(board);
       this.newAnimal = false;
     }
-    }
-
-    // deleteCard( $index:number){
-    //   this.countCards.splice($index, 1);
-    // }
+  }
 }
