@@ -13,4 +13,7 @@ export class BovinesService {
   getBovines(): Observable<Bovine[]> {
     return this.http.get<Bovine[]>(this.apiUrl);
   }
+  saveBovine(bovine: any): Observable<any> {
+    return this.http.post(this.apiUrl, bovine);
+  }
 }

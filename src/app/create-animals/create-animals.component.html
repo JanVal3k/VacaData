@@ -1,4 +1,4 @@
-<div class="contentCreateAnimals">
+<form [formGroup]="animales" class="contentCreateAnimals">
   <button class="btnChangeImg btnPosition" (click)="createAnimal('Closed')">
     <span>X</span>
   </button>
@@ -10,22 +10,38 @@
   </div>
 
   <div class="divContentTxts">
-    <input type="text" placeholder="nombre Animal" />
-    <input type="date" placeholder="fecha nacimiento" />
-    <select name="razas">
+    <input
+      formControlName="NameBovine"
+      type="text"
+      placeholder="nombre Animal"
+    />
+    <input
+      formControlName="Born_Date"
+      type="date"
+      placeholder="fecha nacimiento"
+    />
+    <select formControlName="Race" name="razas">
+      <option value="" disabled selected>Raza</option>
       <option>raza 1</option>
       <option>raza 2</option>
       <option>raza 3</option>
     </select>
-    <input type="text" placeholder="Madre" />
-    <input type="text" placeholder="Padre" />
-    <input type="text" placeholder="Peso" />
-    <input type="text" placeholder="Sexo" />
-    <input type="text" placeholder="direccion" />
+    <input formControlName="Mother" type="text" placeholder="Madre" />
+    <input formControlName="Father" type="text" placeholder="Padre" />
+    <input formControlName="Weight" type="number" placeholder="Peso" />
+    <select formControlName="Sex" name="Sex" placeholder="Sexo">
+      <option value="" disabled selected>Sexo</option>
+      <option>Macho</option>
+      <option>Hembra</option>
+    </select>
+    <input formControlName="Address" type="text" placeholder="direccion" />
+    <select formControlName="Reproduction" name="Reporduction">
+      <option value="" disabled selected>Reproduccion</option>
+      <option>Apto / Apta</option>
+      <option>No Apto / No Apta</option>
+    </select>
     <button>
-      <span class="button_top" (click)="createAnimal('animalsBoard')">
-        Guardar Animal
-      </span>
+      <span class="button_top" (click)="saveAnimal()"> Guardar Animal </span>
     </button>
   </div>
-</div>
+</form>
