@@ -29,9 +29,14 @@ export class FirebaseService {
         console.log('Lo que trae el objeto usuario', user);
 
         if (extenderResult._tokenResponse.isNewUser) {
-          alert('¡Bienvenido! Tu cuenta ha sido creada.');
-          
-          this.usersService.saveUser(user).subscribe({
+          const userData = {
+            uid: user.uid,
+            displayName: user.displayName,
+            email: user.email,
+            photoURL: user.photoURL,
+            phoneNumber: user.phoneNumber || null
+          }  
+          this.usersService.saveUser(userData).subscribe({
             next: (response) => {
               console.log('Usuario guardado en Turso:', response);
             },
@@ -40,7 +45,7 @@ export class FirebaseService {
             }
           });
         } else {
-          alert('¡Bienvenido de nuevo! Has iniciado sesión.');
+          console.log('¡Bienvenido de nuevo! Has iniciado sesión.');
         }
       })
       .catch((error) => {
