@@ -40,8 +40,13 @@
       <option>Apto / Apta</option>
       <option>No Apto / No Apta</option>
     </select>
-    <button>
-      <span class="button_top" (click)="saveAnimal()"> Guardar Animal </span>
-    </button>
+    <p-button
+      type="button"
+      pRipple
+      label="Guardar"
+      severity="success"
+      (click)="saveAnimal()"
+    ></p-button>
   </div>
 </form>
+<p-toast></p-toast>

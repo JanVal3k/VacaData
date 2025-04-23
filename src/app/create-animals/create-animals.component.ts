@@ -3,10 +3,14 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { formatDate } from '@angular/common';
 import { BovinesService } from '../services/bovines.service';
 import { FirebaseService } from '../services/firebase.service';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
 @Component({
   selector: 'app-create-animals',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ToastModule, ButtonModule],
+  providers: [MessageService],
   templateUrl: './create-animals.component.html',
   styleUrl: './create-animals.component.css'
 })
@@ -15,7 +19,7 @@ export class CreateAnimalsComponent {
   animales: FormGroup;
   fechaDelDia: string= '';
 
-  constructor(private bovineService: BovinesService, private bovine: FormBuilder, private firebaseService: FirebaseService ){
+  constructor(private bovineService: BovinesService, private bovine: FormBuilder, private firebaseService: FirebaseService, private messageService: MessageService ){
     this.fechaDelDia = formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
     this.animales = this.bovine.group({
       NameBovine: [''],
@@ -41,14 +45,22 @@ export class CreateAnimalsComponent {
       };
      this.bovineService.saveBovine(dataAnimalWithUser).subscribe({
       next: (response) => {
-        console.log('Animal guardado en Turso:', response);
         this.animales.reset();
+        this.menssageExito();
+        this.createAnimal('Closed');
       },
       error: (err) => {
         console.error('Error al guardar el Animal en Turso:', err);
       }
     });
   }
+  }
+  menssageExito(){
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Muaaaw!',
+      detail: 'Animal Guardado correctamente 🎉'
+    })
   }
   
 createAnimal(animal:string){

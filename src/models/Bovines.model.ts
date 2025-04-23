@@ -1,6 +1,6 @@
 export interface Bovine {
-    Bovines_id: number;
-    NameBonine: string;
+    Bovines_id: string;
+    NameBovine: string;
     Mother: string;
     Father: string;
     Born_Date: string;
@@ -9,4 +9,5 @@ export interface Bovine {
     Weight: string;
     Sex: string;
     Reproduction: string;
+    user_id: string;
   }
