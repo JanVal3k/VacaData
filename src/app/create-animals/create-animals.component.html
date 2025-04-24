@@ -1,52 +1,137 @@
-<form [formGroup]="animales" class="contentCreateAnimals">
-  <button class="btnChangeImg btnPosition" (click)="createAnimal('Closed')">
+<form
+  [formGroup]="animales"
+  class="flex flex-1 flex-row flex-wrap absolute justify-center items-center inset-[20px] ml-[63.9vh] mt-[70px] h-[88vh] w-[55.2vh] bg-[rgba(246,226,203,0.684)] rounded-[14px] overflow-y-auto overflow-x-hidden"
+>
+  <button
+    type="button"
+    class="btnChangeImg btnPosition"
+    (click)="createAnimal('Closed')"
+  >
     <span>X</span>
   </button>
-  <div class="bovineImage">
+
+  <div
+    class="flex flex-col mt-8 min-w-[150px] min-h-[150px] h-[250px] w-[250px] max-h-[300px] max-w-[300px] rounded-[12px] shadow-[5px_7px_10px_rgba(0,0,0,0.555)] transition duration-300 hover:scale-105"
+  >
     <img
       src="https://i.pinimg.com/736x/13/e2/d9/13e2d927506ba20a3b91bb8bdff299e8.jpg"
+      alt="Bovine"
+      class="flex-1 w-full h-full object-cover rounded-[12px]"
     />
-    <button class="fas fa fa-upload btnChangeImg"></button>
+    <button type="button" class="fas fa fa-upload btnChangeImg"></button>
   </div>
 
-  <div class="divContentTxts">
-    <input
-      formControlName="NameBovine"
-      type="text"
-      placeholder="nombre Animal"
-    />
-    <input
-      formControlName="Born_Date"
-      type="date"
-      placeholder="fecha nacimiento"
-    />
-    <select formControlName="Race" name="razas">
-      <option value="" disabled selected>Raza</option>
-      <option>raza 1</option>
-      <option>raza 2</option>
-      <option>raza 3</option>
-    </select>
-    <input formControlName="Mother" type="text" placeholder="Madre" />
-    <input formControlName="Father" type="text" placeholder="Padre" />
-    <input formControlName="Weight" type="number" placeholder="Peso" />
-    <select formControlName="Sex" name="Sex" placeholder="Sexo">
-      <option value="" disabled selected>Sexo</option>
-      <option>Macho</option>
-      <option>Hembra</option>
-    </select>
-    <input formControlName="Address" type="text" placeholder="direccion" />
-    <select formControlName="Reproduction" name="Reporduction">
-      <option value="" disabled selected>Reproduccion</option>
-      <option>Apto / Apta</option>
-      <option>No Apto / No Apta</option>
-    </select>
+  <div class="flex flex-col justify-center items-center p-10">
+    <span class="p-float-label mb-2 w-80">
+      <label for="nombreAnimal">Nombre Animal</label>
+      <input
+        id="nombreAnimal"
+        pInputText
+        formControlName="NameBovine"
+        type="text"
+        class="w-full"
+      />
+    </span>
+
+    <span class="p-float-label mb-2 w-80">
+      <label for="Born_Date">Fecha de Nacimiento</label>
+      <p-calendar
+        formControlName="Born_Date"
+        [showIcon]="true"
+        dateFormat="yy-mm-dd"
+        styleClass="w-full"
+      ></p-calendar>
+    </span>
+
+    <span class="p-float-label mb-2 w-80">
+      <label for="Race">Raza</label>
+      <p-dropdown
+        [options]="razas"
+        formControlName="Race"
+        optionLabel="name"
+        [showClear]="true"
+        class="w-full"
+      >
+      </p-dropdown>
+    </span>
+
+    <span class="p-float-label mb-2 w-80">
+      <label for="madre">Madre</label>
+      <input
+        id="madre"
+        pInputText
+        formControlName="Mother"
+        type="text"
+        class="w-full"
+      />
+    </span>
+
+    <span class="p-float-label mb-2 w-80">
+      <label for="padre">Padre</label>
+      <input
+        id="padre"
+        pInputText
+        formControlName="Father"
+        type="text"
+        class="w-full"
+      />
+    </span>
+
+    <span class="p-float-label mb-2 w-80">
+      <label for="peso">Peso</label>
+      <input
+        id="peso"
+        pInputText
+        formControlName="Weight"
+        type="number"
+        class="w-full"
+      />
+    </span>
+
+    <span class="p-float-label mb-2 w-80">
+      <label for="Sex">Sexo</label>
+      <p-dropdown
+        [options]="[{ name: 'Macho' }, { name: 'Hembra' }]"
+        formControlName="Sex"
+        optionLabel="name"
+        [showClear]="true"
+        class="w-full"
+      >
+      </p-dropdown>
+    </span>
+
+    <span class="p-float-label mb-2 w-80">
+      <label for="direccion">Dirección</label>
+      <input
+        id="direccion"
+        pInputText
+        formControlName="Address"
+        type="text"
+        class="w-full"
+      />
+    </span>
+
+    <span class="p-float-label mb-2 w-80">
+      <label for="Reproduction">Reproducción</label>
+      <p-dropdown
+        [options]="[{ name: 'Apto / Apta' }, { name: 'No Apto / No Apta' }]"
+        formControlName="Reproduction"
+        optionLabel="name"
+        [showClear]="true"
+        class="w-full"
+      >
+      </p-dropdown>
+    </span>
+
     <p-button
       type="button"
-      pRipple
       label="Guardar"
       severity="success"
+      [style]="{ width: '100%' }"
       (click)="saveAnimal()"
-    ></p-button>
+    >
+    </p-button>
   </div>
 </form>
+
 <p-toast></p-toast>
