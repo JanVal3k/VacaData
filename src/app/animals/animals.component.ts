@@ -1,19 +1,23 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CreateAnimalsComponent } from "../create-animals/create-animals.component";
 import { BovinesService } from '../services/bovines.service';
-import { ToastModule } from 'primeng/toast';
+
 import { FirebaseService } from '../services/firebase.service';
 import { Bovine } from '../../models/Bovines.model';
 
 @Component({
   selector: 'app-animals',
   standalone: true,
-  imports: [CreateAnimalsComponent, ToastModule],
+  imports: [CreateAnimalsComponent],
   templateUrl: './animals.component.html',
-  styleUrl: './animals.component.css'
+  styleUrl: './animals.component.css',
+  providers: []
 })
 export class AnimalsComponent {
   @Output() selectHealth = new EventEmitter<string>();
+  @Output() successMessageToAppComponet = new EventEmitter<{severity: string;
+    summary: string;
+    detail: string;}>();
   countCards: Bovine[] = [];
   newAnimal = false;
 
@@ -57,6 +61,10 @@ export class AnimalsComponent {
     }
   }
   
+  toAppComponenteSuccessMessage(event: { severity: string; summary: string; detail: string }) {
+    this.successMessageToAppComponet.emit(event);
+  }
+
   showHealth(item: string) {
     this.selectHealth.emit(item);
   }

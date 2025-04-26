@@ -43,6 +43,9 @@
     </button>
   </div>
   } @if(newAnimal === true){
-  <app-create-animals (newAnimal)="plusCard($event)" />
+  <app-create-animals
+    (newAnimal)="plusCard($event)"
+    (successMessageBovine)="toAppComponenteSuccessMessage($event)"
+  />
   }
 </div>

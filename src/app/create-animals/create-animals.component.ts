@@ -1,17 +1,14 @@
-// create-animals.component.ts
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { formatDate } from '@angular/common';
 import { BovinesService } from '../services/bovines.service';
 import { FirebaseService } from '../services/firebase.service';
-import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { RippleModule } from 'primeng/ripple';
 import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
-import { CalendarModule } from 'primeng/calendar';
+import { DatePicker } from 'primeng/datepicker';
 
 interface Razas {
   name: string;
@@ -22,21 +19,22 @@ interface Razas {
   standalone: true,
   imports: [
     ReactiveFormsModule, 
-    FormsModule, 
-    ToastModule, 
+    FormsModule,
     ButtonModule, 
     DropdownModule, 
     RippleModule, 
     InputTextModule, 
     FloatLabelModule, 
-    CalendarModule
+    DatePicker,
+    ButtonModule 
   ],
-  providers: [MessageService],
+  providers: [],
   templateUrl: './create-animals.component.html',
   styleUrl: './create-animals.component.css'
 })
 export class CreateAnimalsComponent {
   @Output() newAnimal = new EventEmitter<string>();
+  @Output() successMessageBovine = new EventEmitter<{severity: string, summary: string, detail: string}>();
   animales: FormGroup;
   fechaDelDia: Date;
   razas: Razas[] = [
@@ -50,7 +48,7 @@ export class CreateAnimalsComponent {
     private bovineService: BovinesService, 
     private fb: FormBuilder, 
     private firebaseService: FirebaseService, 
-    private messageService: MessageService
+
   ) {
     this.fechaDelDia = new Date();
     
@@ -72,18 +70,20 @@ export class CreateAnimalsComponent {
     const bornDate = dataAnimal.Born_Date instanceof Date 
           ? dataAnimal.Born_Date.toISOString().slice(0,10)
           : dataAnimal.Born_Date;
-      
+    
     if(currentUser) {
+      console.log('ObjetoGrupo Animales: ',dataAnimal);
       const dataAnimalWithUser = {
-        ...dataAnimal, 
+        ...dataAnimal,
+        Race: dataAnimal.Race.name,
+        Sex: dataAnimal.Sex.name,
+        Reproduction: dataAnimal.Reproduction.name,
+        Born_Date: bornDate,
         user_id: currentUser.uid, 
-        Born_Date: bornDate
       };
-      
       this.bovineService.saveBovine(dataAnimalWithUser).subscribe({
         next: (response) => {
           this.animales.reset();
-          this.menssageExito();
           this.createAnimal('Closed');
         },
         error: (err) => {
@@ -94,7 +94,7 @@ export class CreateAnimalsComponent {
   }
   
   menssageExito() {
-    this.messageService.add({
+    this.successMessageBovine.emit({
       severity: 'success',
       summary: 'Muaaaw!',
       detail: 'Animal Guardado correctamente 🎉'

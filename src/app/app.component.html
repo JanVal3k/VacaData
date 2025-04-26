@@ -6,7 +6,9 @@
     <app-menu (selectBoard)="getBoard($event)" />
   </nav>
   <nav class="content">
-    <app-animals />
+    <app-animals
+      (successMessageToAppComponet)="messageSuccessAddBovine($event)"
+    />
     @if (Board === "animalsBoard") {
     <app-animals (selectHealth)="getBoard($event)" />
     } @else if (Board === "healthBoard") {
@@ -17,4 +19,5 @@
   </nav>
   }
 </div>
+<p-toast />
 <router-outlet />
