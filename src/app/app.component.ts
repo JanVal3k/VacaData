@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { MenuComponent } from "./menu/menu.component";
 import { AnimalsComponent } from "./animals/animals.component";
 import { HealthComponent } from "./health/health.component";
 import { ReproducctionComponent } from "./reproducction/reproducction.component";
@@ -16,7 +15,7 @@ import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MenuComponent, AnimalsComponent, HealthComponent, ReproducctionComponent, LoginComponent, Toast, Menu, ButtonModule],
+  imports: [RouterOutlet,  AnimalsComponent, HealthComponent, ReproducctionComponent, LoginComponent, Toast, Menu, ButtonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   providers: [MessageService]
@@ -27,10 +26,8 @@ export class AppComponent {
     itemsMenu: MenuItem[] | undefined;
     user: any = null;
     constructor(private firebaseService: FirebaseService, private messageService: MessageService){
-      
       this.firebaseService.auth.onAuthStateChanged((user)=>{
         this.login = !!user;
-        console.log(`Estado del login: ${this.login}`);
       });
     }
 
