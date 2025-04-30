@@ -1,10 +1,10 @@
 <form
   [formGroup]="animales"
-  class="flex flex-1 flex-row flex-wrap absolute justify-center items-center inset-[20px] ml-[63.9vh] mt-[70px] h-[88vh] w-[75vh] bg-[rgba(203,214,246,0.68)] rounded-[14px] overflow-y-auto overflow-x-hidden"
+  class="flex flex-1 flex-row flex-wrap absolute justify-center items-center inset-[20px] ml-[63.9vh] mt-[70px] h-[88vh] w-[75vh] bg-[rgba(114,120,139,0.68)] rounded-[14px] overflow-y-auto overflow-x-hidden"
 >
   <p-button
     type="button"
-    severity="success"
+    severity="contrast"
     label="X"
     class="absolute top-3 right-4 text-white flex justify-center items-center text-lg max-h-[5vh] px-4 py-2 font-semibold gap-2 rounded"
     (click)="createAnimal('Closed')"
@@ -22,10 +22,11 @@
 
     <p-button
       type="button"
-      severity="success"
+      severity="info"
+      raised="true"
       class="absolute max-h-[5vh] text-white/70 m-2 px-2 py-3 flex justify-between items-center text-sm font-semibold gap-2 rounded"
       (onClick)="newQR()"
-      ><span class="fa fa-upload"></span
+      ><span class="fas fa-arrows-rotate"></span
     ></p-button>
   </div>
 
@@ -43,10 +44,10 @@
 
     <span class="mb-2 w-80">
       <p-datepicker
-        placeholder="Fecha de nacimiento"
         formControlName="Born_Date"
-        dateFormat="yy-mm-dd"
+        placeholder="Fecha de nacimiento"
         styleClass="w-full"
+        showIcon="true"
       ></p-datepicker>
     </span>
 
@@ -133,10 +134,13 @@
     <p-button
       type="button"
       label="Guardar"
-      severity="success"
+      severity="contrast"
+      pRipple
       [style]="{ width: '100%' }"
+      [disabled]="!formIsComplete"
       (click)="saveAnimal()"
     >
     </p-button>
   </div>
+  <p-toast />
 </form>

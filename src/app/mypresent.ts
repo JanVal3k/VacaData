@@ -1,7 +1,7 @@
 import { definePreset } from '@primeng/themes';
-import Aura from '@primeng/themes/aura';
+import Material from '@primeng/themes/material';
 
-export const MyPreset = definePreset(Aura, {
+export const MyPreset = definePreset(Material, {
     semantic: {
         colorScheme: {
             light: {

@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, FormsModule,Validators  } from '@angular/forms';
 //import { formatDate } from '@angular/common';
 import { QRCodeComponent } from 'angularx-qrcode';
 import { BovinesService } from '../services/bovines.service';
@@ -11,6 +11,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { DatePicker } from 'primeng/datepicker';
 import { nanoid } from 'nanoid';
+import { Ripple } from 'primeng/ripple';
+import { MessageService } from 'primeng/api';
+import { Toast } from 'primeng/toast';
+
 
 interface Razas {
   name: string;
@@ -29,9 +33,11 @@ interface Razas {
     FloatLabelModule, 
     DatePicker,
     ButtonModule,
-    QRCodeComponent 
+    QRCodeComponent,
+    Toast,
+    Ripple
   ],
-  providers: [],
+  providers: [MessageService],
   templateUrl: './create-animals.component.html',
   styleUrl: './create-animals.component.css'
 })
@@ -39,7 +45,7 @@ export class CreateAnimalsComponent {
   @Output() newAnimal = new EventEmitter<string>();
   @Output() successMessageBovine = new EventEmitter<{severity: string, summary: string, detail: string}>();
   animales: FormGroup;
-  fechaDelDia: Date;
+  fechaDelDia: Date = new Date();
   QRCodeGenerateRandom: string = '';
   public qrBase64: string | null = null;
   razas: Razas[] = [
@@ -52,28 +58,32 @@ export class CreateAnimalsComponent {
   constructor(
     private bovineService: BovinesService, 
     private fb: FormBuilder, 
-    private firebaseService: FirebaseService, 
+    private firebaseService: FirebaseService,
+    private messageService: MessageService
 
   ) {
-    this.fechaDelDia = new Date();
     this.QRCodeGenerateRandom = nanoid(); 
     this.animales = this.fb.group({
       NameBovine: [''],
       Mother: [''],
       Father: [''],
-      Born_Date: [this.fechaDelDia],
+      Born_Date: [''],
       Address: [''],
       Race: [''],
       Weight: [''],
       Sex: [''],
       Reproduction: [''],
+      //,Validators.required
       qrData: [this.QRCodeGenerateRandom]
     });
+    
   }
   
   newQR(){
     this.QRCodeGenerateRandom = nanoid();
-    console.log('si cambia el QR: ', this.QRCodeGenerateRandom)
+  }
+  get formIsComplete(): boolean {
+    return this.animales.valid;
   }
 
   saveAnimal() {
@@ -83,8 +93,12 @@ export class CreateAnimalsComponent {
           ? dataAnimal.Born_Date.toISOString().slice(0,10)
           : dataAnimal.Born_Date;
     
+    if(!this.formIsComplete) {
+    this.menssageCompletarDatos();
+    return;
+    }
     if(currentUser) {
-      console.log('ObjetoGrupo Animales: ',dataAnimal);
+      
       const dataAnimalWithUser = {
         ...dataAnimal,
         Race: dataAnimal.Race.name,
@@ -103,9 +117,17 @@ export class CreateAnimalsComponent {
           console.error('Error al guardar el Animal en Turso:', err);
         }
       });
-    }
+    
+  }
   }
   
+  menssageCompletarDatos() {
+    this.messageService.add({
+      severity: 'warn',
+      summary: 'Alerta!',
+      detail: 'Datos incompletos. Porfavor llene o seleccione todos los datos para continuar'
+    });
+  }
   menssageExito() {
     this.successMessageBovine.emit({
       severity: 'success',
