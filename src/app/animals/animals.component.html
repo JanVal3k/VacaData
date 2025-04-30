@@ -1,6 +1,6 @@
 <div class="contentAnimals">
   @for (item of countCards; track $index) {
-  <div class="card">
+  <!-- <div class="card">
     <div class="top-section">
       <div class="border"></div>
       <div class="icons">
@@ -31,7 +31,45 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
+  <p-card
+    [style]="{
+      width: '25rem',
+      overflow: 'hidden',
+      border: '4px solid #312e81',
+      borderRadius: '8px',
+    }"
+  >
+    <ng-template #header>
+      <div class="flex w-full h-full bg-white justify-center items-center p-4">
+        <qrcode
+          [qrdata]="'Your data string'"
+          [width]="256"
+          [errorCorrectionLevel]="'M'"
+        ></qrcode>
+      </div>
+    </ng-template>
+    <ng-template #title> {{ item.NameBovine }} </ng-template>
+    <p>Raza: {{ item.Race }}</p>
+    <p>Peso: {{ item.Weight }}</p>
+    <p>Nacimiento: {{ item.Mother }}</p>
+    <p>Nacimiento: {{ item.Father }}</p>
+    <p>Nacimiento: {{ item.Born_Date }}</p>
+    <p>Nacimiento: {{ item.Sex }}</p>
+    <p>Nacimiento: {{ item.Reproduction }}</p>
+    <ng-template #footer>
+      <div class="flex gap-4 mt-1">
+        <p-button
+          label="Borrar"
+          severity="secondary"
+          class="w-full"
+          [outlined]="true"
+          styleClass="w-full"
+        />
+        <p-button label="Editar" class="w-full" styleClass="w-full" />
+      </div>
+    </ng-template>
+  </p-card>
   } @if (countCards.length <=11) {
   <div class="ButtonCard">
     <button class="newCard" (click)="newAnimal = true">

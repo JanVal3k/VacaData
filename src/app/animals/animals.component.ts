@@ -1,14 +1,16 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CreateAnimalsComponent } from "../create-animals/create-animals.component";
 import { BovinesService } from '../services/bovines.service';
-
 import { FirebaseService } from '../services/firebase.service';
 import { Bovine } from '../../models/Bovines.model';
+import { CardModule } from 'primeng/card';
+import { ButtonModule } from 'primeng/button';
+import { QRCodeComponent } from 'angularx-qrcode';
 
 @Component({
   selector: 'app-animals',
   standalone: true,
-  imports: [CreateAnimalsComponent],
+  imports: [CreateAnimalsComponent, CardModule, ButtonModule, QRCodeComponent],
   templateUrl: './animals.component.html',
   styleUrl: './animals.component.css',
   providers: []
