@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { formatDate } from '@angular/common';
+//import { formatDate } from '@angular/common';
+import { QRCodeComponent } from 'angularx-qrcode';
 import { BovinesService } from '../services/bovines.service';
 import { FirebaseService } from '../services/firebase.service';
 import { ButtonModule } from 'primeng/button';
@@ -9,6 +10,7 @@ import { RippleModule } from 'primeng/ripple';
 import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { DatePicker } from 'primeng/datepicker';
+import { nanoid } from 'nanoid';
 
 interface Razas {
   name: string;
@@ -26,7 +28,8 @@ interface Razas {
     InputTextModule, 
     FloatLabelModule, 
     DatePicker,
-    ButtonModule 
+    ButtonModule,
+    QRCodeComponent 
   ],
   providers: [],
   templateUrl: './create-animals.component.html',
@@ -37,6 +40,8 @@ export class CreateAnimalsComponent {
   @Output() successMessageBovine = new EventEmitter<{severity: string, summary: string, detail: string}>();
   animales: FormGroup;
   fechaDelDia: Date;
+  QRCodeGenerateRandom: string = '';
+  public qrBase64: string | null = null;
   razas: Razas[] = [
     {name: 'Raza 1'},
     {name: 'Raza 2'},
@@ -51,7 +56,7 @@ export class CreateAnimalsComponent {
 
   ) {
     this.fechaDelDia = new Date();
-    
+    this.QRCodeGenerateRandom = nanoid(); 
     this.animales = this.fb.group({
       NameBovine: [''],
       Mother: [''],
@@ -62,8 +67,15 @@ export class CreateAnimalsComponent {
       Weight: [''],
       Sex: [''],
       Reproduction: [''],
+      qrData: [this.QRCodeGenerateRandom]
     });
   }
+  
+  newQR(){
+    this.QRCodeGenerateRandom = nanoid();
+    console.log('si cambia el QR: ', this.QRCodeGenerateRandom)
+  }
+
   saveAnimal() {
     const dataAnimal = this.animales.value;
     const currentUser = this.firebaseService.getCurrentUser();
@@ -79,6 +91,7 @@ export class CreateAnimalsComponent {
         Sex: dataAnimal.Sex.name,
         Reproduction: dataAnimal.Reproduction.name,
         Born_Date: bornDate,
+        qrData: this.QRCodeGenerateRandom,
         user_id: currentUser.uid, 
       };
       this.bovineService.saveBovine(dataAnimalWithUser).subscribe({

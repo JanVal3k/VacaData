@@ -1,55 +1,28 @@
-<div class="contentAnimals">
+<div
+  class="flex flex-1 flex-row p-5 flex-wrap h-[84vh] max-h-full max-w-full overflow-y-auto overflow-x-hidden"
+>
   @for (item of countCards; track $index) {
-  <!-- <div class="card">
-    <div class="top-section">
-      <div class="border"></div>
-      <div class="icons">
-        <div class="button-container">
-          <button class="button" (click)="showHealth('healthBoard')">
-            <i class="fas fa-suitcase-medical icon"></i>
-          </button>
-          <button class="button">
-            <i class="fas fa-trash icon"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="bottom-section">
-      <span class="title">{{ item.NameBovine }}</span>
-      <div class="row row1">
-        <div class="item">
-          <span class="big-text">{{ item.Born_Date }}</span>
-          <span class="regular-text">Born day</span>
-        </div>
-        <div class="item">
-          <span class="big-text">{{ item.Weight }}</span>
-          <span class="regular-text">Weight</span>
-        </div>
-        <div class="item">
-          <span class="big-text">{{ item.Race }}</span>
-          <span class="regular-text">Race</span>
-        </div>
-      </div>
-    </div>
-  </div> -->
   <p-card
     [style]="{
       width: '25rem',
       overflow: 'hidden',
-      border: '4px solid #312e81',
+      border: '4px solid #27272a',
       borderRadius: '8px',
+      marginLeft: '10px'
     }"
   >
     <ng-template #header>
       <div class="flex w-full h-full bg-white justify-center items-center p-4">
         <qrcode
-          [qrdata]="'Your data string'"
-          [width]="256"
+          [qrdata]="item.qrData"
+          [width]="200"
           [errorCorrectionLevel]="'M'"
         ></qrcode>
       </div>
     </ng-template>
-    <ng-template #title> {{ item.NameBovine }} </ng-template>
+    <ng-template #title>
+      {{ item.NameBovine }}
+    </ng-template>
     <p>Raza: {{ item.Race }}</p>
     <p>Peso: {{ item.Weight }}</p>
     <p>Nacimiento: {{ item.Mother }}</p>
@@ -66,19 +39,31 @@
           [outlined]="true"
           styleClass="w-full"
         />
-        <p-button label="Editar" class="w-full" styleClass="w-full" />
+        <p-button
+          severity="contrast"
+          label="Editar"
+          class="w-full"
+          styleClass="w-full"
+        />
       </div>
     </ng-template>
   </p-card>
   } @if (countCards.length <=11) {
-  <div class="ButtonCard">
-    <button class="newCard" (click)="newAnimal = true">
-      <span class="shadow"></span>
-      <span class="edge"></span>
-      <div class="front">
-        <span class="txtBtnCard">+</span>
-      </div>
-    </button>
+  <div
+    class="flex ml-5 p-3 justify-center items-center w-[230px] h-[270px] rounded-[20px] bg-zinc-800"
+  >
+    <p-button
+      label="+"
+      severity="contrast"
+      raised="true"
+      [style]="{
+        width: '20vh',
+        height: '25vh',
+        fontSize: '200px',
+        color: '#27272a'
+      }"
+      (click)="newAnimal = true"
+    />
   </div>
   } @if(newAnimal === true){
   <app-create-animals

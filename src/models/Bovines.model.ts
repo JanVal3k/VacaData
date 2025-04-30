@@ -9,5 +9,6 @@ export interface Bovine {
     Weight: string;
     Sex: string;
     Reproduction: string;
+    qrData: string;
     user_id: string;
   }

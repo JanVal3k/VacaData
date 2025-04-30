@@ -1,6 +1,6 @@
 <form
   [formGroup]="animales"
-  class="flex flex-1 flex-row flex-wrap absolute justify-center items-center inset-[20px] ml-[63.9vh] mt-[70px] h-[88vh] w-[75vh] bg-[rgba(246,226,203,0.684)] rounded-[14px] overflow-y-auto overflow-x-hidden"
+  class="flex flex-1 flex-row flex-wrap absolute justify-center items-center inset-[20px] ml-[63.9vh] mt-[70px] h-[88vh] w-[75vh] bg-[rgba(203,214,246,0.68)] rounded-[14px] overflow-y-auto overflow-x-hidden"
 >
   <p-button
     type="button"
@@ -12,17 +12,19 @@
   </p-button>
 
   <div
-    class="flex flex-col mt-8 min-w-[150px] min-h-[150px] h-[250px] w-[250px] max-h-[300px] max-w-[300px] rounded-[12px] shadow-[5px_7px_10px_rgba(0,0,0,0.555)] transition duration-300 hover:scale-105 bg-amber-600"
+    class="flex mt-8 min-w-[150px] min-h-[150px] h-[250px] w-[250px] max-h-[300px] max-w-[300px] rounded-[12px] shadow-[5px_7px_10px_rgba(0,0,0,0.555)] transition duration-300 hover:scale-105 bg-white justify-center items-center"
   >
-    <img
-      src="https://i.pinimg.com/736x/13/e2/d9/13e2d927506ba20a3b91bb8bdff299e8.jpg"
-      alt="Bovine"
-      class="flex-1 w-90 h-90 object-cover rounded-[12px]"
-    />
+    <qrcode
+      [qrdata]="QRCodeGenerateRandom"
+      [width]="256"
+      [errorCorrectionLevel]="'M'"
+    ></qrcode>
+
     <p-button
       type="button"
       severity="success"
       class="absolute max-h-[5vh] text-white/70 m-2 px-2 py-3 flex justify-between items-center text-sm font-semibold gap-2 rounded"
+      (onClick)="newQR()"
       ><span class="fa fa-upload"></span
     ></p-button>
   </div>

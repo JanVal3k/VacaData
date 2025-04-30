@@ -20,6 +20,8 @@ export class AnimalsComponent {
   @Output() successMessageToAppComponet = new EventEmitter<{severity: string;
     summary: string;
     detail: string;}>();
+
+  QrDataBovine: string = '';  
   countCards: Bovine[] = [];
   newAnimal = false;
 
