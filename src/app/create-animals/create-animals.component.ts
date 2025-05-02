@@ -14,6 +14,8 @@ import { nanoid } from 'nanoid';
 import { Ripple } from 'primeng/ripple';
 import { MessageService } from 'primeng/api';
 import { Toast } from 'primeng/toast';
+import { Select } from 'primeng/select';
+import { RazasBovinas } from '../data/raceBovines.data';
 
 
 interface Razas {
@@ -35,7 +37,8 @@ interface Razas {
     ButtonModule,
     QRCodeComponent,
     Toast,
-    Ripple
+    Ripple,
+    Select
   ],
   providers: [MessageService],
   templateUrl: './create-animals.component.html',
@@ -44,17 +47,13 @@ interface Razas {
 export class CreateAnimalsComponent {
   @Output() newAnimal = new EventEmitter<string>();
   @Output() successMessageBovine = new EventEmitter<{severity: string, summary: string, detail: string}>();
+  //----------------------------------------------------------
   animales: FormGroup;
   fechaDelDia: Date = new Date();
   QRCodeGenerateRandom: string = '';
-  public qrBase64: string | null = null;
-  razas: Razas[] = [
-    {name: 'Raza 1'},
-    {name: 'Raza 2'},
-    {name: 'Raza 3'}
-  ];
+  razas: Razas[] = RazasBovinas;
   selectedRaza: Razas | undefined;
-
+  intervaloQR: any;
   constructor(
     private bovineService: BovinesService, 
     private fb: FormBuilder, 
@@ -62,7 +61,7 @@ export class CreateAnimalsComponent {
     private messageService: MessageService
 
   ) {
-    this.QRCodeGenerateRandom = nanoid(); 
+
     this.animales = this.fb.group({
       NameBovine: [''],
       Mother: [''],
@@ -73,18 +72,26 @@ export class CreateAnimalsComponent {
       Weight: [''],
       Sex: [''],
       Reproduction: [''],
-      //,Validators.required
       qrData: [this.QRCodeGenerateRandom]
     });
     
   }
   
+  QRRandomIntervalo(){
+    this.intervaloQR = setInterval(()=>{
+      this.QRCodeGenerateRandom = nanoid();
+    }, 30000)
+  }
+
   newQR(){
     this.QRCodeGenerateRandom = nanoid();
+    this.animales.get('qrData')?.setValue(this.QRCodeGenerateRandom)
   }
   get formIsComplete(): boolean {
     return this.animales.valid;
   }
+
+
 
   saveAnimal() {
     const dataAnimal = this.animales.value;
@@ -111,6 +118,7 @@ export class CreateAnimalsComponent {
       this.bovineService.saveBovine(dataAnimalWithUser).subscribe({
         next: (response) => {
           this.animales.reset();
+          clearInterval(this.intervaloQR);
           this.createAnimal('Closed');
         },
         error: (err) => {
@@ -120,7 +128,11 @@ export class CreateAnimalsComponent {
     
   }
   }
-  
+  ngOnInit(){
+    this.QRCodeGenerateRandom = nanoid();
+    this.QRRandomIntervalo() 
+    this.animales.get('qrData')?.setValue(this.QRCodeGenerateRandom)
+  }
   menssageCompletarDatos() {
     this.messageService.add({
       severity: 'warn',
@@ -137,6 +149,7 @@ export class CreateAnimalsComponent {
   }
   
   createAnimal(animal: string) {
+    clearInterval(this.intervaloQR);
     this.newAnimal.emit(animal);
   }
 }

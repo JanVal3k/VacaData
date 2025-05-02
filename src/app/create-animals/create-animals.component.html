@@ -17,17 +17,8 @@
     <qrcode
       [qrdata]="QRCodeGenerateRandom"
       [width]="256"
-      [errorCorrectionLevel]="'M'"
+      [errorCorrectionLevel]="'H'"
     ></qrcode>
-
-    <p-button
-      type="button"
-      severity="info"
-      raised="true"
-      class="absolute max-h-[5vh] text-white/70 m-2 px-2 py-3 flex justify-between items-center text-sm font-semibold gap-2 rounded"
-      (onClick)="newQR()"
-      ><span class="fas fa-arrows-rotate"></span
-    ></p-button>
   </div>
 
   <div class="flex flex-col justify-center items-center p-10">
@@ -52,7 +43,7 @@
     </span>
 
     <span class="p-float-label mb-2 w-80">
-      <p-dropdown
+      <p-select
         [options]="razas"
         formControlName="Race"
         optionLabel="name"
@@ -60,7 +51,7 @@
         class="w-full"
         placeholder="Razas"
       >
-      </p-dropdown>
+      </p-select>
     </span>
 
     <p-floatLabel variant="on" class="p-float-label mb-2 w-80">
@@ -97,7 +88,7 @@
     </p-float-label>
 
     <span class="p-float-label mb-2 w-80">
-      <p-dropdown
+      <p-select
         [options]="[{ name: 'Macho' }, { name: 'Hembra' }]"
         formControlName="Sex"
         optionLabel="name"
@@ -105,7 +96,7 @@
         placeholder="Sexo"
         class="w-full"
       >
-      </p-dropdown>
+      </p-select>
     </span>
 
     <p-floatLabel variant="on" class="p-float-label mb-2 w-80">
@@ -120,7 +111,7 @@
     </p-floatLabel>
 
     <span class="p-float-label mb-2 w-80">
-      <p-dropdown
+      <p-select
         [options]="[{ name: 'Apto / Apta' }, { name: 'No Apto / No Apta' }]"
         formControlName="Reproduction"
         optionLabel="name"
@@ -128,7 +119,7 @@
         placeholder="Reproduction"
         class="w-full"
       >
-      </p-dropdown>
+      </p-select>
     </span>
 
     <p-button

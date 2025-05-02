@@ -16,11 +16,13 @@
       <div
         class="flex w-full min-h-[24.3vh] h-full bg-white justify-center items-center p-4"
       >
+        @if(item.qrData){
         <qrcode
           [qrdata]="item.qrData"
           [width]="200"
-          [errorCorrectionLevel]="'M'"
+          [errorCorrectionLevel]="'H'"
         ></qrcode>
+        }
       </div>
     </ng-template>
     <ng-template #title> Nombre: {{ item.NameBovine }} </ng-template>
