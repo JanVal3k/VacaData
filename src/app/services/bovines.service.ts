@@ -17,4 +17,7 @@ export class BovinesService {
   saveBovine(bovine: any): Observable<any> {
     return this.http.post(this.apiUrl, bovine);
   }
+  deleteBovine(bovine_id: string, user_id: string){
+    return this.http.delete<Bovine[]>(`${this.apiUrl}?bovines_id=${bovine_id}&user_id=${user_id}`);
+  }
 }

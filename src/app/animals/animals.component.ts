@@ -40,7 +40,26 @@ export class AnimalsComponent {
     });
   }
   }
-
+  deleteBovineWithId(bovineId: string){
+    const currentUser = this.firebaseService.getCurrentUser();
+    if(currentUser){
+      console.log('Entro en el delete')
+      this.bovineService.deleteBovine(bovineId ,currentUser.uid).subscribe(
+        {
+          next: ()=>{
+            this.ngOnInit();
+            this.successMessageToAppComponet.emit({
+              severity: 'success',
+              summary: 'Exito',
+              detail: 'Animal Eliminado correctamente'
+            });
+          }, error:(err)=>{
+            console.error('Error al Eliminar',err)
+          }
+        }
+      )
+    }
+  }
 
   plusCard(board: string) {
     const currentUser = this.firebaseService.getCurrentUser();
@@ -64,6 +83,7 @@ export class AnimalsComponent {
       this.newAnimal = false;
     }
   }
+ 
   
   toAppComponenteSuccessMessage(event: { severity: string; summary: string; detail: string }) {
     this.successMessageToAppComponet.emit(event);
