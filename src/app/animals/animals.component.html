@@ -33,15 +33,18 @@
     <p>Nacimiento: {{ item.Born_Date }}</p>
     <p>Nacimiento: {{ item.Sex }}</p>
     <p>Nacimiento: {{ item.Reproduction }}</p>
+
     <ng-template #footer>
       <div class="flex gap-2 mt-1">
+        <p-toast (onClose)="handleToastClose($event, item.Bovines_id)" />
+        <p-confirmpopup />
         <p-button
           label="Borrar"
-          severity="secondary"
+          severity="danger"
           class="w-full"
           [outlined]="true"
           styleClass="w-full"
-          (onClick)="deleteBovineWithId(item.Bovines_id)"
+          (onClick)="confirmDelete($event, item.Bovines_id)"
         />
         <p-button
           severity="contrast"

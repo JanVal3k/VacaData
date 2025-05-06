@@ -5,15 +5,18 @@ import { FirebaseService } from '../services/firebase.service';
 import { Bovine } from '../../models/Bovines.model';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { QRCodeComponent } from 'angularx-qrcode';
 
 @Component({
   selector: 'app-animals',
   standalone: true,
-  imports: [CreateAnimalsComponent, CardModule, ButtonModule, QRCodeComponent],
+  imports: [CreateAnimalsComponent, CardModule, ButtonModule, QRCodeComponent, ToastModule, ConfirmPopupModule],
   templateUrl: './animals.component.html',
   styleUrl: './animals.component.css',
-  providers: []
+  providers: [ConfirmationService, MessageService]
 })
 export class AnimalsComponent {
   @Output() selectHealth = new EventEmitter<string>();
@@ -25,7 +28,7 @@ export class AnimalsComponent {
   countCards: Bovine[] = [];
   newAnimal = false;
 
-  constructor(private bovineService: BovinesService, private firebaseService:FirebaseService) {}
+  constructor(private bovineService: BovinesService, private firebaseService:FirebaseService,private confirmationService: ConfirmationService, private messageService: MessageService) {}
 
   ngOnInit() {
     const currentUser = this.firebaseService.getCurrentUser();
@@ -43,16 +46,10 @@ export class AnimalsComponent {
   deleteBovineWithId(bovineId: string){
     const currentUser = this.firebaseService.getCurrentUser();
     if(currentUser){
-      console.log('Entro en el delete')
       this.bovineService.deleteBovine(bovineId ,currentUser.uid).subscribe(
         {
           next: ()=>{
             this.ngOnInit();
-            this.successMessageToAppComponet.emit({
-              severity: 'success',
-              summary: 'Exito',
-              detail: 'Animal Eliminado correctamente'
-            });
           }, error:(err)=>{
             console.error('Error al Eliminar',err)
           }
@@ -60,7 +57,39 @@ export class AnimalsComponent {
       )
     }
   }
+handleToastClose(event: any, bovineID: string){
+  const source = event.message.data?.source;
+  if(source === 'accept'){
+    this.deleteBovineWithId(bovineID);
+  }
+}
 
+  confirmDelete(event: Event, bovineID: string) {
+    this.confirmationService.confirm({
+        target: event.target as EventTarget,
+        message: 'Esta seguro de querer borrar el animal?\n Este no se podra recuperar despues',
+        icon: 'fas fa-circle-exclamation',
+        rejectButtonProps: {
+            label: 'Cancelar',
+            severity: 'secondary',
+            outlined: true
+        },
+        acceptButtonProps: {
+            label: 'Aceptar',
+            severity: 'danger'
+        },
+        accept: () => {
+            this.messageService.add({ severity: 'info', summary: 'Confirmado', detail: 'Animal Borrado con EXITO!', life: 2000, data:{ source: 'accept'} });
+            setTimeout(() => {
+              this.deleteBovineWithId(bovineID);
+            }, 2000);
+            
+        },
+        reject: () => {
+            this.messageService.add({ severity: 'error', summary: 'Cancelado', detail: 'Borrado cancelado!', life: 2000, data:{ source: 'reject'} });
+        }
+    });
+  }
   plusCard(board: string) {
     const currentUser = this.firebaseService.getCurrentUser();
     if (board === 'Closed') {
