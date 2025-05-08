@@ -18,7 +18,7 @@ export class LoginComponent implements AfterViewInit {
   ngRegistrer(){
     this.firebaseSevice.loginWithGoogle();
   }
-
+  
   ngAfterViewInit() {
     if (this.signUpButton && this.signInButton && this.container) {
       this.signUpButton.nativeElement.addEventListener('click', () => {

@@ -158,10 +158,11 @@ i{
 }
 
 .overlay {
-	background: #FF416C;
+	background: #ffffff;
 	background: #000000;
-	background-size: cover;
+	background-size: 100%;
 	background-position: 0 0;
+	border: solid 5px #ffffff;
 	color: #FFFFFF;
 	position: relative;
 	left: -100%;
