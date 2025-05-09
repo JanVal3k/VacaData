@@ -1,6 +1,6 @@
 <div class="container" id="container" #container>
   <div class="form-container sign-up-container">
-    <form action="#">
+    <form>
       <h1>Crear Cuenta</h1>
       <div class="social-container">
         <a href="#" id="iniciarConGoogle" class="social" (click)="ngRegistrer()"
@@ -9,21 +9,41 @@
       </div>
       <span>o utiliza otro email para regístrate</span>
       <div class="input-container">
-        <input type="text" id="NombreRegistro" required="" />
+        <input
+          #NameRegistro
+          type="text"
+          id="NombreRegistro"
+          class="text-black"
+          required=""
+        />
         <label for="NombreRegistro" class="label">Nombre:</label>
         <div class="underline"></div>
       </div>
       <div class="input-container">
-        <input type="Email" id="EmailRegistro" required="" />
+        <input
+          #EmailRegistro
+          type="Email"
+          id="EmailRegistro"
+          class="text-black"
+          required=""
+        />
         <label for="EmailRegistro" class="label">Email:</label>
         <div class="underline"></div>
       </div>
       <div class="input-container">
-        <input type="password" id="PasswordRegistro" required="" />
+        <input
+          #PassRegistro
+          type="password"
+          id="PasswordRegistro"
+          class="text-black"
+          required=""
+        />
         <label for="PasswordRegistro" class="label">Constraseña:</label>
         <div class="underline"></div>
       </div>
-      <button>Regístrate</button>
+      <button type="button" (click)="RigistrerWithEmailNPass()">
+        Regístrarse
+      </button>
     </form>
   </div>
   <div class="form-container sign-in-container">

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword } from 'firebase/auth';
 import { firebaseConfig } from '../../environments/environment';
 import { UsersService } from './users.service';
 import { ExtendedUserCredential } from '../../types/firebase.types';
@@ -17,7 +17,7 @@ export class FirebaseService {
   constructor(private usersService: UsersService) {
     console.log(`fireBAse inicializado con: ${this.app}`) 
   }
-
+  //-------------------------------------------------------
   loginWithGoogle() {
     const provider = new GoogleAuthProvider();
     return signInWithPopup(this.auth, provider)
@@ -52,6 +52,7 @@ export class FirebaseService {
         console.error('Error al iniciar sesión con Google:', error);
       });
   }
+  //-------------------------------------------------------
   signInwithGoogle(){
     const provider = new GoogleAuthProvider();
     return signInWithPopup(this.auth, provider)
@@ -68,11 +69,29 @@ export class FirebaseService {
       console.error('Error al iniciar sesión con Google:', error);
     });
   }
-
+  //-------------------------------------------------------
+  loginWithEmailAndPass(email: string, pass: string, nombre:string){
+    const auth = getAuth();
+    const db = getFirestore();
+  createUserWithEmailAndPassword(auth, email, pass)  
+    .then((userCredential)=>{
+      const user = userCredential.user;
+      return setDoc(doc(db, 'users', user.uid),{
+        name: nombre,
+        email: user.email,
+        creadoEn: new Date(),
+        rol: "ganadero"
+      })
+    })
+    .catch((error)=>{
+      console.error('Error en el registro', error.message);
+    })
+  }
+  //-------------------------------------------------------
   getCurrentUser(){
     return this.auth.currentUser;
   }
-
+  //-------------------------------------------------------
   signOut(){
     this.auth.signOut();
   }
