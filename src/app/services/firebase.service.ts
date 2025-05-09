@@ -52,6 +52,22 @@ export class FirebaseService {
         console.error('Error al iniciar sesión con Google:', error);
       });
   }
+  signInwithGoogle(){
+    const provider = new GoogleAuthProvider();
+    return signInWithPopup(this.auth, provider)
+    .then((result)=>{
+      const extenderResult = result as ExtendedUserCredential;
+      const user = extenderResult.user;
+      if(extenderResult._tokenResponse?.isNewUser){
+        alert("Usuario no registrado.")
+        return false;
+      }else{
+        return user;
+      }
+    }).catch((error)=>{
+      console.error('Error al iniciar sesión con Google:', error);
+    });
+  }
 
   getCurrentUser(){
     return this.auth.currentUser;

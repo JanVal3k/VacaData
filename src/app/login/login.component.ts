@@ -13,12 +13,14 @@ export class LoginComponent implements AfterViewInit {
   @ViewChild('container') container!: ElementRef;
   isLoggedIn = false;
 
-  constructor(private firebaseSevice: FirebaseService){}
+  constructor(private firebaseService: FirebaseService){}
 
   ngRegistrer(){
-    this.firebaseSevice.loginWithGoogle();
+    this.firebaseService.loginWithGoogle();
   }
-  
+    signIn(){
+      this.firebaseService.signInwithGoogle();
+    }
   ngAfterViewInit() {
     if (this.signUpButton && this.signInButton && this.container) {
       this.signUpButton.nativeElement.addEventListener('click', () => {

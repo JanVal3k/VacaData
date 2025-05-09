@@ -57,6 +57,7 @@ export class AppComponent {
         ]
       }]
     }
+    
     signOut(){
       this.firebaseService.signOut();
     }
