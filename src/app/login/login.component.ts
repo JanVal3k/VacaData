@@ -13,16 +13,16 @@ export class LoginComponent implements AfterViewInit {
   @ViewChild('NameRegistro') NameRegistro!: ElementRef;
   @ViewChild('EmailRegistro') EmailRegistro!: ElementRef;
   @ViewChild('PassRegistro') PassRegistro!: ElementRef;
-
+  @ViewChild('emailSignIn') emailSignIn!: ElementRef;
+  @ViewChild('passSignIn') passSignIn!: ElementRef;
   isLoggedIn = false;
-
-  
-
+//---------------------
   constructor(private firebaseService: FirebaseService){}
-
+//---------------------
   ngRegistrer(){
     this.firebaseService.loginWithGoogle();
   }
+//---------------------
   RigistrerWithEmailNPass(){
     const dataUserRegister = {
       nombre: this.NameRegistro.nativeElement.value,
@@ -31,9 +31,27 @@ export class LoginComponent implements AfterViewInit {
     } 
     this.firebaseService.loginWithEmailAndPass(dataUserRegister.email, dataUserRegister.pass, dataUserRegister.nombre);
   }
-  signIn(){
+//---------------------
+  signInWithGoogleHTML(){
       this.firebaseService.signInwithGoogle();
   }
+//---------------------
+ signInWithEmailAndPassword() {
+  const userData = {
+    email: this.emailSignIn.nativeElement.value,
+    pass: this.passSignIn.nativeElement.value,
+  }
+  console.log('Este es el valor de Email: ', userData.email)
+  console.log('Este es el valor de Pass: ', userData.pass)
+  this.firebaseService.signInWithEmailAndPass(userData.email, userData.pass)
+  .then(response => {
+        console.log('Usuario ha iniciado sesión correctamente', response)
+      })
+      .catch(error => {
+        console.error('Error al iniciar sesión:', error);
+      });
+}
+//--------------------- 
   ngAfterViewInit() {
     if (this.signUpButton && this.signInButton && this.container) {
       this.signUpButton.nativeElement.addEventListener('click', () => {

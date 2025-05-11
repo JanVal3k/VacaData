@@ -47,27 +47,39 @@
     </form>
   </div>
   <div class="form-container sign-in-container">
-    <form action="#">
+    <form>
       <h1>¡Bienvenido a Vacadata!</h1>
       <span></span>
       <div class="social-container">
-        <a href="#" class="social" (click)="signIn()"
+        <a href="#" class="social" (click)="signInWithGoogleHTML()"
           >Continua con Google<i class="fab fa-google"></i
         ></a>
       </div>
       <span>O</span>
       <div class="input-container">
-        <input type="text" id="NombreInicio" required="" />
+        <input
+          #emailSignIn
+          type="text"
+          class="text-black"
+          id="NombreInicio"
+          required=""
+        />
         <label for="NombreInicio" class="label">Correo:</label>
         <div class="underline"></div>
       </div>
       <div class="input-container">
-        <input type="password" id="ConstraseñaInicio" required="" />
+        <input
+          #passSignIn
+          type="password"
+          class="text-black"
+          id="ConstraseñaInicio"
+          required=""
+        />
         <label for="ConstraseñaInicio" class="label">Constraseña:</label>
         <div class="underline"></div>
       </div>
       <!-- <a href="#">¿Olvidaste tu contraseña?</a> -->
-      <button href="#">iniciar sesión</button>
+      <button (click)="signInWithEmailAndPassword()">iniciar sesión</button>
     </form>
   </div>
   <div class="overlay-container">
