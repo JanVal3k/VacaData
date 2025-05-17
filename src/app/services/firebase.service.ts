@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { initializeApp } from 'firebase/app';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
 import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, fetchSignInMethodsForEmail } from 'firebase/auth';
-import { Auth } from 'firebase/auth';
 import { firebaseConfig } from '../../environments/environment';
 import { UsersService } from './users.service';
 import { ExtendedUserCredential } from '../../types/firebase.types';
+import { BehaviorSubject, Observable, from, throwError } from 'rxjs';
+import { catchError, switchMap, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,21 @@ export class FirebaseService {
   constructor(private usersService: UsersService) {
     console.log(`firebase inicializado con: ${this.app}`) 
   }
+
+  // async verificarUsuarioExiste(email: string) {
+  //   const auth = getAuth();    
+  //   const emailTrimmed = email.trim().toLowerCase();
+  //   console.log('Esto el emailTimificado en verificarUsuarioExiste: ',emailTrimmed)
+  //   try {
+  //     const methods = await fetchSignInMethodsForEmail(auth, emailTrimmed)
+  //     console.log('Métodos de sign-in para el email:', methods);
+  //     return methods.length > 0;
+  //   } catch (error) {
+  //     console.error('Error al verificar usuario:', error);
+  //     throw error;
+  //   }
+  // }
+  //-------------------------------------------------------
   //-------------------------------------------------------
   loginWithGoogle() {
     const provider = new GoogleAuthProvider();
@@ -89,39 +105,26 @@ export class FirebaseService {
     });
   }
   //-------------------------------------------------------
-  async verificarUsuarioExiste(email: string) {
-  const auth = getAuth();
-  try {
-    const methods = await fetchSignInMethodsForEmail(auth, email);
-    return methods.length > 0; // Devuelve true si el usuario existe
-  } catch (error) {
-    console.error('Error al verificar usuario:', error);
-    throw error;
-  }
-}
-  async signInWithEmailAndPass(email: string, pass: string) {
-  const auth = getAuth();
-  console.log('Así llegan los valores: ', email, pass);
-  
-  // Primero verificamos si el usuario existe
-  const usuarioExiste = await this.verificarUsuarioExiste(email);
-  
-  if (!usuarioExiste) {
-    // Si el usuario no existe, lanzamos un error personalizado
-    throw new Error('usuario_no_existe');
+  signInWithEmailAndPass(email: string, password: string): Observable<any> {
+    const auth = getAuth();
+    const sigInEmail: string = email;
+    const sigInPass: string = password;
+    console.log('Así llegan los valores: ', sigInEmail, sigInPass);
+    return from(
+       signInWithEmailAndPassword(auth, sigInEmail, sigInPass)      
+    ).pipe(
+      catchError(error => {
+        if (error.message === 'usuario_no_existe') {
+          console.error('El usuario no existe en la base de datos');
+        } else {
+          console.error('Error en la autenticación:', error);
+        }
+        return throwError(() => error);
+      })
+    );
   }
   
-  // Si el usuario existe, procedemos con el inicio de sesión
-  return signInWithEmailAndPassword(auth, email, pass);
-}
-//  signInWithEmailAndPass(email: string, pass: string){
-//   const auth = getAuth();
-//   console.log('Asi llegan los valores: ', email , pass)
-//   return signInWithEmailAndPassword(auth, email,pass);
   
-  
-// }
-
   //-------------------------------------------------------
   getCurrentUser(){
     return this.auth.currentUser;
